@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siphiwe Khumalo | Creative Technologist</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+    :root {
+      --primary-bg: #0a0a0f;
+      --secondary-bg: #12121a;
+      --card-bg: #1a1a24;
+      --accent: #00d9ff;
+      --accent-glow: rgba(0, 217, 255, 0.3);
+      --secondary-accent: #7c3aed;
+      --text-primary: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --tech-gradient: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: var(--primary-bg);
+      overflow: hidden;
+    }
+
+    .bg-animation::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--accent-glow) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveGrid 20s linear infinite;
+      opacity: 0.1;
+    }
+
+    @keyframes moveGrid {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+    }
+
+    nav .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--tech-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero Section with Banner */
+    .hero-banner {
+      width: 100%;
+      height: 300px;
+      background: url('banner.jpg') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, var(--primary-bg));
+    }
+
+    #hero {
+      margin-top: 70px;
+      text-align: center;
+      position: relative;
+    }
+
+    .profile-section {
+      margin-top: -120px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 25px var(--accent-glow);
+      margin: 0 auto 1.5rem;
+      object-fit: cover;
+      background: var(--card-bg);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: var(--tech-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .hero-content .tagline {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--tech-gradient);
+      color: white;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px var(--accent-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent);
+      color: var(--primary-bg);
+    }
+
+    /* Sections */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--tech-gradient);
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .about-content p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 217, 255, 0.1);
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .stat-card h4 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Skills Section */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 217, 255, 0.1);
+      transition: all 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 30px var(--accent-glow);
+      transform: translateY(-5px);
+    }
+
+    .skill-card h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .skill-card ul {
+      list-style: none;
+    }
+
+    .skill-card li {
+      padding: 0.5rem 0;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .skill-card li:last-child {
+      border-bottom: none;
+    }
+
+    .tech-stack {
+      margin-top: 3rem;
+    }
+
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .tech-badge {
+      background: var(--card-bg);
+      padding: 0.7rem 1.5rem;
+      border-radius: 25px;
+      border: 1px solid rgba(0, 217, 255, 0.2);
+      color: var(--text-primary);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .tech-badge:hover {
+      background: var(--accent);
+      color: var(--primary-bg);
+      transform: scale(1.05);
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 217, 255, 0.1);
+      transition: all 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 40px var(--accent-glow);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent, var(--card-bg));
+    }
+
+    .project-info {
+      padding: 1.5rem;
+    }
+
+    .project-info h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-info p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .tech-used {
+      font-family: 'Fira Code', monospace;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links .btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Experience Section */
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--tech-gradient);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 217, 255, 0.1);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -3.5rem;
+      top: 1.5rem;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .timeline-item h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item p {
+      color: var(--text-secondary);
+    }
+
+    /* Connect Section */
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 217, 255, 0.1);
+      border-radius: 12px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--primary-bg);
+      transform: translateY(-5px);
+    }
+
+    /* Contact Section */
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 217, 255, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--secondary-bg);
+      border: 1px solid rgba(0, 217, 255, 0.2);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--secondary-bg);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(0, 217, 255, 0.1);
+    }
+
+    footer p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    footer nav {
+      position: static;
+      background: transparent;
+      backdrop-filter: none;
+      padding: 0;
+      border: none;
+    }
+
+    footer nav ul {
+      justify-content: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-grid {
+        flex-direction: column;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation"></div>
+
+  <nav>
+    <div class="nav-content">
+      <div class="logo">SK</div>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-banner"></div>
+    <div class="profile-section">
+      <img src="image.png" alt="Siphiwe Khumalo" class="profile-image" />
+      <div class="hero-content">
+        <h1>Siphiwe Khumalo</h1>
+        <p class="subtitle">Creative Technologist | Front-End Developer</p>
+        <p class="tagline">Transforming innovative ideas into powerful digital experiences through clean code and cutting-edge technology</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-grid">
+      <div class="about-content">
+        <h3>Crafting Digital Excellence</h3>
+        <p>I'm <strong>Siphiwe Khumalo</strong>, a passionate creative technologist specializing in front-end development and interactive digital experiences. With a unique blend of technical expertise and creative vision, I build web applications that are not only visually stunning but also highly functional and user-centric.</p>
+        <p>My work focuses on bridging the gap between design and development, creating seamless digital products that deliver real value. From AI-powered tools to immersive web experiences, I leverage modern technologies to bring ideas to life.</p>
+        
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h4>15+</h4>
+          <p>Projects Completed</p>
+        </div>
+        <div class="stat-card">
+          <h4>3+</h4>
+          <p>Years Experience</p>
+        </div>
+        <div class="stat-card">
+          <h4>100%</h4>
+          <p>Client Satisfaction</p>
+        </div>
+        <div class="stat-card">
+          <h4>∞</h4>
+          <p>Lines of Code</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Expertise</h2>
+    <div class="skills-container">
+      <div class="skill-card">
+        <h3>Frontend Development</h3>
+        <ul>
+          <li>HTML5 & CSS3</li>
+          <li>JavaScript (ES6+)</li>
+          <li>React.js</li>
+          <li>Three.js & WebGL</li>
+          <li>Responsive Design</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Backend & APIs</h3>
+        <ul>
+          <li>Node.js</li>
+          <li>RESTful APIs</li>
+          <li>Firebase</li>
+          <li>OpenAI Integration</li>
+          <li>Database Management</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Tools & Workflow</h3>
+        <ul>
+          <li>Git & GitHub</li>
+          <li>VS Code</li>
+          <li>Figma & Canva</li>
+          <li>Agile Development</li>
+          <li>Performance Optimization</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tech-stack">
+      <h3 style="text-align: center; color: var(--accent);">Technology Stack</h3>
+      <div class="tech-badges">
+        <span class="tech-badge">HTML5</span>
+        <span class="tech-badge">CSS3</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">React.js</span>
+        <span class="tech-badge">Three.js</span>
+        <span class="tech-badge">Node.js</span>
+        <span class="tech-badge">Firebase</span>
+        <span class="tech-badge">Git</span>
+        <span class="tech-badge">REST APIs</span>
+        <span class="tech-badge">WebGL</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Featured Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="smart.jpg" alt="GlowUp Lamp Preview" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div class="project-info">
+          <h3>SmartMailGen</h3>
+          <p>AI-powered email generation platform that creates professional, context-aware email responses using advanced natural language processing.</p>
+          <p class="tech-used"><strong>Tech:</strong> HTML, CSS, JavaScript, OpenAI API</p>
+          <div class="project-links">
+            <a href="https://siphiwe-khumalo.github.io/Smart-Email-Generator/" class="btn btn-primary">Live Demo</a>
+            <a href="https://github.com/Siphiwe-Khumalo/Smart-Email-Generator" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="glowup.jpg" alt="GlowUp Lamp Preview" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div class="project-info">
+          <h3>GlowUp Lamp Landing Page</h3>
+          <p>Modern e-commerce landing page featuring smooth animations, interactive product showcase, and optimized conversion flow for smart lighting products.</p>
+          <p class="tech-used"><strong>Tech:</strong> HTML, CSS, JavaScript</p>
+          <div class="project-links">
+            <a href="https://siphiwe-khumalo.github.io/Glowup-Product-Landing-Page-/" class="btn btn-primary">Live Demo</a>
+            <a href="https://github.com/Siphiwe-Khumalo/Glowup-Product-Landing-Page-" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+       <img src="verse.jpg" alt="GlowUp Lamp Preview" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div class="project-info">
+          <h3>CineVerse</h3>
+          <p>Dynamic movie discovery platform with real-time data fetching, advanced filtering, and personalized recommendations using TMDB API integration.</p>
+          <p class="tech-used"><strong>Tech:</strong> HTML, CSS, JavaScript, TMDB API</p>
+          <div class="project-links">
+            <a href="https://siphiwe-khumalo.github.io/CineVerse.html/" class="btn btn-primary">Live Demo</a>
+            <a href="https://github.com/Siphiwe-Khumalo/CineVerse.html" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="qoute.jpg" alt="GlowUp Lamp Preview" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div class="project-info">
+          <h3>Random Quote Generator</h3>
+          <p>Minimalist web app delivering inspirational quotes with smooth transitions, API integration, and social sharing capabilities.</p>
+          <p class="tech-used"><strong>Tech:</strong> HTML, CSS, JavaScript, Quotes API</p>
+          <div class="project-links">
+            <a href="https://siphiwe-khumalo.github.io/Random-Quote-Generator-/" class="btn btn-primary">Live Demo</a>
+            <a href="https://github.com/Siphiwe-Khumalo/Random-Quote-Generator-" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+       <img src="ronnie.jpg" alt="GlowUp Lamp Preview" style="width: 100%; height: 200px; object-fit: cover;" />
+        <div class="project-info">
+          <h3>RonnieAi FAQs Assistant</h3>
+          <p>Intelligent FAQ chatbot with natural language processing, providing instant answers through an intuitive conversational interface.</p>
+          <p class="tech-used"><strong>Tech:</strong> HTML, CSS, JavaScript, AI Integration</p>
+          <div class="project-links">
+            <a href="https://siphiwe-khumalo.github.io/not-so-Smart-Ai-FAQs-Assistant/" class="btn btn-primary">Live Demo</a>
+            <a href="https://github.com/Siphiwe-Khumalo/not-so-Smart-Ai-FAQs-Assistant" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience & Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Freelance Web Developer</h3>
+        <p>Developed custom web solutions for small businesses and startups, including promotional pages, interactive tools, and e-commerce platforms. Successfully delivered 15+ projects with 100% client satisfaction.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Core Competencies</h3>
+        <p>Expertise in creative problem-solving, client communication, project management, and agile development. Strong emphasis on responsive design, performance optimization, and user experience.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Academic Background</h3>
+        <p>Currently pursuing studies in Tourism, exploring the intersection of technology and digital storytelling. Focused on leveraging web technologies to enhance user experiences in the travel and hospitality industry.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Continuous Learning</h3>
+        <p>Actively expanding skills in advanced React patterns, WebGL, and AI integration. Committed to staying current with emerging web technologies and industry best practices.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect">
+    <h2>Let's Connect</h2>
+    <p style="text-align:center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Let's build something amazing together.</p>
+    <div class="social-grid">
+      <a href="https://github.com/Siphiwe-Khumalo" class="social-link" target="_blank">
+        <span>💻</span> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/siphiwe-khumalo-97a0aa306/" class="social-link" target="_blank">
+        <span>💼</span> LinkedIn
+      </a>
+      <a href="https://vm.tiktok.com/ZSHcW9qoNontj-JoXkq/" class="social-link" target="_blank">
+        <span>📱</span> TikTok
+      </a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Get In Touch</h2>
+    <div class="contact-container">
+      <form class="contact-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Ronnie Khumalo" required />
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" placeholder="Ronnie@example.com" required />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Siphiwe Khumalo. All Rights Reserved.</p>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#connect">Connect</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Message sent! (This is a demo - connect your actual form handler)');
+    });
+  </script>
+</body>
+</html>
