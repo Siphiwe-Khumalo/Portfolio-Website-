@@ -1,0 +1,55 @@
+# Siphiwe Khumalo: Portfolio
+
+Personal portfolio covering building automation, IT infrastructure and software development.
+It is a plain static site (HTML, CSS and a little JavaScript) with no build step, and it is hosted on GitHub Pages.
+
+## Structure
+
+```
+index.html                     The whole website (all content lives here)
+css/site.css                   Styles (colour tokens at the top)
+js/site.js                     Menu, section highlight, scroll reveal, gallery lightbox
+assets/favicon.svg             Site icon
+assets/img/<project>/          Web images (WebP), one folder per project
+assets/img/og-card.jpg         Social sharing preview (1200 × 630)
+Siphiwe-Khumalo-Portfolio.pdf  Downloadable PDF portfolio (generated)
+pdf/portfolio.html             Source layout of the PDF (A4, 13 pages)
+pdf/img/                       Compressed JPEG copies used by the PDF
+pdf/build-pdf.cjs              Renders the PDF
+```
+
+## Run locally
+
+```
+python -m http.server 8080
+```
+Then open http://localhost:8080. You can also open `index.html` directly in a browser.
+
+## Deploy
+
+GitHub Pages serves the `main` branch. Merge or push to `main`, and the site updates at
+https://siphiwe-khumalo.github.io/Portfolio-Website-/ within a minute or two.
+
+## Common updates
+
+- **Public email:** in `index.html`, replace the `Email address to be added` row in the Contact section with
+  `<li><a href="mailto:you@example.com"><span>Email</span><small>you@example.com</small></a></li>`.
+  Do the same in `pdf/portfolio.html`, then rebuild the PDF.
+- **Tridium certificate:** add the image under `assets/img/certificates/`. Replace the `.cert-slot` block's
+  text with an `<img>`, and change "Pending issue" to the issue date. Confirm the exact course title against
+  the training documents.
+- **Project video:** inside a project's `.gallery`, add
+  `<figure class="g-video"><video controls preload="metadata" poster="assets/img/…/poster.webp"><source src="assets/video/clip.mp4" type="video/mp4"></video><figcaption>What the clip shows</figcaption></figure>`.
+  Keep clips short and compressed (H.264 MP4, around 10 MB or less).
+- **New images:** export as WebP at most 1800 px wide, put them in the project's folder, and add an
+  `<a class="g-item" href="…"><img src="…" width="…" height="…" loading="lazy" alt="…"><figcaption>…</figcaption></a>`.
+  Add `g-lg` (large), `g-md` (half) or `g-wide` (full width) to change the size in the grid.
+
+## Rebuild the PDF
+
+Requires Node.js and Playwright (`npm i -D playwright`, then `npx playwright install chromium`):
+```
+node pdf/build-pdf.cjs
+```
+The script warns if any page's content overflows. If you add images to the PDF, save JPEG copies in `pdf/img/`.
+WebP is re-encoded losslessly and makes the file very large.

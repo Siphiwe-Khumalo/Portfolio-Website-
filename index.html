@@ -1,1708 +1,430 @@
-
-
-Index · HTML
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-ZA">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Siphiwe Khumalo | IT & Technology</title>
-<meta name="description" content="Siphiwe Khumalo — technology professional working across hardware, networks, infrastructure, cloud and software. Portfolio, projects, and contact." />
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
- 
-  :root {
-    --bg: #111110;
-    --text: #f2efe8;
-    --text-muted: #9c988c;
-    --text-faint: #6f6c63;
-    --accent: #c9a568;
-    --accent-soft: rgba(201, 165, 104, 0.35);
-    --border: rgba(242, 239, 232, 0.12);
-    --border-strong: rgba(242, 239, 232, 0.24);
-    --max: 1180px;
-    --gap: clamp(1.5rem, 4vw, 3rem);
-    --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  }
- 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
- 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
- 
-  img { display: block; max-width: 100%; }
-  a { color: inherit; }
-  ::selection { background: var(--accent-soft); color: var(--text); }
- 
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-    outline: 1px solid var(--accent);
-    outline-offset: 3px;
-  }
- 
-  .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--gap); padding-right: var(--gap); }
- 
-  .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: inline-block;
-    margin-bottom: 0.9rem;
-  }
- 
-  h2 {
-    font-family: 'Big Shoulders Display', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(2rem, 4.2vw, 3.1rem);
-    letter-spacing: 0.01em;
-    line-height: 1;
-  }
- 
-  section { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
-  section + section { border-top: 1px solid var(--border); }
-  .section-head { margin-bottom: clamp(2.5rem, 6vw, 4rem); max-width: 62ch; }
-  .section-head p.lede { color: var(--text-muted); margin-top: 1rem; font-size: 1rem; }
- 
-  /* ---------- Nav ---------- */
-  header.site-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 1.4rem var(--gap);
-    display: flex; align-items: center; justify-content: space-between;
-    transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease), padding 0.35s var(--ease);
-    border-bottom: 1px solid transparent;
-  }
-  header.site-nav.scrolled {
-    background: rgba(17, 17, 16, 0.92);
-    backdrop-filter: blur(6px);
-    border-bottom-color: var(--border);
-    padding-top: 1rem; padding-bottom: 1rem;
-  }
-  .nav-mark {
-    width: 34px; height: 34px;
-    border: 1px solid var(--border-strong);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Big Shoulders Display', sans-serif;
-    font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em;
-    color: var(--text); text-decoration: none; flex-shrink: 0;
-  }
-  .nav-links { display: flex; gap: 1.9rem; list-style: none; }
-  .nav-links a {
-    text-decoration: none; font-size: 0.74rem; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--text-muted); font-weight: 500;
-    position: relative; padding-bottom: 4px;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px;
-    background: var(--accent); transition: width 0.25s var(--ease);
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { width: 100%; }
- 
-  .nav-toggle {
-    display: none; background: none; border: 1px solid var(--border-strong);
-    width: 40px; height: 40px; align-items: center; justify-content: center;
-    cursor: pointer; flex-direction: column; gap: 5px;
-  }
-  .nav-toggle span { display: block; width: 18px; height: 1px; background: var(--text); transition: transform 0.25s var(--ease), opacity 0.25s var(--ease); }
-  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
- 
-  /* ---------- Hero ---------- */
-  #hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; background: #0c0c0b; }
-  .hero-media { position: absolute; inset: 0; overflow: hidden; }
-  .hero-media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(35%) contrast(1.04); }
-  .hero-media::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(12,12,11,0.25) 0%, rgba(12,12,11,0.55) 55%, var(--bg) 96%),
-                linear-gradient(to right, rgba(12,12,11,0.35) 0%, transparent 45%);
-  }
-  .hero-content { position: relative; width: 100%; padding: 0 var(--gap) clamp(3rem, 8vw, 5.5rem); }
-  .hero-content .eyebrow { margin-bottom: 1.1rem; }
-  .hero-content h1 {
-    font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; text-transform: uppercase;
-    font-size: clamp(3.1rem, 10vw, 7.4rem); line-height: 0.9; letter-spacing: 0.005em; max-width: 16ch;
-  }
-  .hero-tagline { margin-top: 1.6rem; max-width: 46ch; color: var(--text-muted); font-size: 1.02rem; font-weight: 300; }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.4rem; }
- 
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem;
-    border: 1px solid var(--border-strong); border-radius: 999px;
-    font-family: 'IBM Plex Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.06em;
-    text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--text);
-    background: transparent; cursor: pointer; transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
-  }
-  .btn:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-fill { background: var(--text); color: var(--bg); border-color: var(--text); }
-  .btn-fill:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
- 
-  /* ---------- About ---------- */
-  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: start; }
-  .about-copy h3 {
-    font-family: 'Big Shoulders Display', sans-serif; font-size: clamp(1.5rem, 2.4vw, 2rem);
-    text-transform: uppercase; font-weight: 700; margin-bottom: 1.2rem; letter-spacing: 0.01em;
-  }
-  .about-copy p { color: var(--text-muted); margin-bottom: 1.1rem; max-width: 58ch; }
-  .about-copy p strong { color: var(--text); font-weight: 500; }
- 
-  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2.6rem; border-top: 1px solid var(--border); }
-  .stat-row div { padding: 1.4rem 1.2rem 0 0; border-right: 1px solid var(--border); }
-  .stat-row div:last-child { border-right: none; padding-right: 0; }
-  .stat-row h4 {
-    font-family: 'Big Shoulders Display', sans-serif; font-size: clamp(1.6rem, 3vw, 2.3rem);
-    color: var(--accent); font-weight: 700; line-height: 1;
-  }
-  .stat-row p { font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-faint); margin-top: 0.5rem; font-family: 'IBM Plex Mono', monospace; }
- 
-  .about-portrait { position: relative; border: 1px solid var(--border); padding: 14px; }
-  .about-portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(55%) contrast(1.05); }
-  .about-portrait::before, .about-portrait::after { content: ''; position: absolute; width: 22px; height: 22px; border: 1px solid var(--accent); }
-  .about-portrait::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-  .about-portrait::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
- 
-  /* ---------- How I Work / Stack diagram (signature element) ---------- */
-  .work-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
-  .work-copy p { color: var(--text-muted); margin-bottom: 1.1rem; max-width: 52ch; }
-  .work-copy p strong { color: var(--text); font-weight: 500; }
- 
-  .stack {
-    display: flex; flex-direction: column; border: 1px solid var(--border);
-  }
-  .stack-layer {
-    display: grid; grid-template-columns: 2.6rem 1fr; align-items: center;
-    padding: 1.05rem 1.3rem;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    transition: background-color 0.25s var(--ease), padding-left 0.25s var(--ease);
-  }
-  .stack-layer:last-child { border-bottom: none; }
-  .stack-layer:hover { background: rgba(242,239,232,0.03); padding-left: 1.7rem; }
-  .stack-layer .idx {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--accent);
-  }
-  .stack-layer h4 {
-    font-family: 'Big Shoulders Display', sans-serif; font-size: 1.05rem; text-transform: uppercase;
-    font-weight: 700; letter-spacing: 0.02em; margin-bottom: 0.2rem;
-  }
-  .stack-layer p { color: var(--text-muted); font-size: 0.88rem; max-width: 42ch; }
-  .stack-layer .idx::after {
-    content: ''; display: block; width: 1px; height: 1.6rem; background: var(--border-strong);
-    margin: 0.4rem auto 0;
-  }
-  .stack-layer:last-child .idx::after { display: none; }
- 
-  /* ---------- Skills / Tech & IT ---------- */
-  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(2rem, 5vw, 3.5rem); }
-  .skill-col h3 {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent); padding-bottom: 0.9rem; border-bottom: 1px solid var(--border-strong); margin-bottom: 0.4rem;
-  }
-  .skill-col p.col-note { color: var(--text-faint); font-size: 0.82rem; margin: 0.7rem 0 0.3rem; }
-  .skill-col ul { list-style: none; }
-  .skill-col li { padding: 0.75rem 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem; }
-  .skill-col li:last-child { border-bottom: none; }
- 
-  .tools-row { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--border); }
-  .tools-row .eyebrow { display: block; margin-bottom: 1.4rem; }
-  .tool-badges { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .tool-badge {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; padding: 0.5rem 1rem;
-    border: 1px solid var(--border-strong); border-radius: 999px; color: var(--text-muted);
-    transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
-  }
-  .tool-badge:hover { border-color: var(--accent); color: var(--accent); }
- 
-  /* ---------- Projects ---------- */
-  .projects-list { display: flex; flex-direction: column; }
-  .project-row {
-    display: grid; grid-template-columns: 0.9fr 1.5fr; gap: clamp(1.6rem, 4vw, 3rem);
-    padding: clamp(2rem, 4vw, 3rem) 0; border-bottom: 1px solid var(--border); align-items: start;
-  }
-  .project-row:first-child { padding-top: 0; }
-  .project-row:last-child { border-bottom: none; padding-bottom: 0; }
- 
-  .project-image { position: relative; overflow: hidden; aspect-ratio: 16 / 11; border: 1px solid var(--border); }
-  .project-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(70%) contrast(1.05); transition: filter 0.4s var(--ease), transform 0.5s var(--ease); }
-  .project-row:hover .project-image img { filter: grayscale(0%) contrast(1.05); transform: scale(1.03); }
- 
-  .project-info h3 { font-family: 'Big Shoulders Display', sans-serif; font-size: 1.6rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.9rem; }
-  .project-info .story dt {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-faint); margin-top: 0.9rem;
-  }
-  .project-info .story dt:first-child { margin-top: 0; }
-  .project-info .story dd { color: var(--text-muted); font-size: 0.94rem; margin-top: 0.25rem; }
- 
-  .tech-used {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-faint);
-    text-transform: uppercase; margin-top: 1.2rem;
-  }
-  .project-links { display: flex; gap: 1.4rem; padding-top: 1rem; margin-top: 1rem; border-top: 1px solid var(--border); }
-  .project-links a {
-    text-decoration: none; font-size: 0.82rem; letter-spacing: 0.04em; color: var(--text); font-weight: 500;
-    display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.25s var(--ease);
-  }
-  .project-links a:hover { color: var(--accent); }
-  .project-links a svg { width: 12px; height: 12px; transition: transform 0.25s var(--ease); }
-  .project-links a:hover svg { transform: translate(2px, -2px); }
- 
-  /* ---------- Experience ---------- */
-  .timeline { position: relative; padding-left: clamp(2rem, 5vw, 3.2rem); max-width: 760px; }
-  .timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--border-strong); }
-  .timeline-item { position: relative; padding-bottom: clamp(2rem, 4vw, 2.8rem); }
-  .timeline-item:last-child { padding-bottom: 0; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: calc(-1 * clamp(2rem, 5vw, 3.2rem) + 1px); top: 6px;
-    width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1px solid var(--accent);
-  }
-  .timeline-item .tag {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); display: block; margin-bottom: 0.4rem;
-  }
-  .timeline-item h3 { font-family: 'Big Shoulders Display', sans-serif; font-size: 1.25rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; }
-  .timeline-item p { color: var(--text-muted); max-width: 60ch; }
- 
-  /* ---------- Learning ---------- */
-  .learning-list { list-style: none; max-width: 720px; }
-  .learning-list li {
-    display: flex; align-items: baseline; gap: 1.2rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border);
-  }
-  .learning-list li:first-child { border-top: 1px solid var(--border); }
-  .learning-list .mark { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--accent); flex-shrink: 0; width: 1.4rem; }
-  .learning-list .label { font-family: 'Big Shoulders Display', sans-serif; font-size: 1.1rem; text-transform: uppercase; font-weight: 700; }
-  .learning-list .note { color: var(--text-muted); font-size: 0.88rem; margin-top: 0.2rem; }
- 
-  /* ---------- Heading (where I'm heading) ---------- */
-  .heading-copy { max-width: 62ch; }
-  .heading-copy p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.1rem; }
-  .heading-copy p strong { color: var(--text); font-weight: 500; }
- 
-  /* ---------- Connect / Contact ---------- */
-  .connect-lead { max-width: 52ch; color: var(--text-muted); margin-bottom: 2.6rem; }
-  .social-list { list-style: none; display: flex; flex-direction: column; max-width: 420px; }
-  .social-list li { border-bottom: 1px solid var(--border); }
-  .social-list li:first-child { border-top: 1px solid var(--border); }
-  .social-list a {
-    display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0.2rem;
-    text-decoration: none; color: var(--text); font-family: 'Big Shoulders Display', sans-serif;
-    text-transform: uppercase; font-size: 1.15rem; letter-spacing: 0.02em;
-    transition: color 0.25s var(--ease), padding-left 0.25s var(--ease);
-  }
-  .social-list a:hover { color: var(--accent); padding-left: 0.6rem; }
-  .social-list a svg { width: 16px; height: 16px; opacity: 0.7; }
- 
-  .contact-form { max-width: 560px; }
-  .form-group { margin-bottom: 1.8rem; }
-  .form-group label {
-    display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.6rem;
-  }
-  .form-group input, .form-group textarea {
-    width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-strong);
-    padding: 0.7rem 0.1rem; color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 1rem;
-    transition: border-color 0.25s var(--ease);
-  }
-  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-faint); }
-  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
-  .form-group textarea { min-height: 110px; resize: vertical; }
- 
-  /* ---------- Footer ---------- */
-  footer { border-top: 1px solid var(--border); padding: 2.6rem var(--gap); }
-  .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem; }
-  footer p { color: var(--text-faint); font-size: 0.82rem; }
-  footer ul { list-style: none; display: flex; gap: 1.6rem; }
-  footer a { text-decoration: none; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
-  footer a:hover { color: var(--accent); }
- 
-  /* ---------- Responsive ---------- */
-  @media (max-width: 860px) {
-    .about-grid, .work-grid { grid-template-columns: 1fr; }
-    .about-portrait { max-width: 340px; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .project-row { grid-template-columns: 1fr; }
-  }
- 
-  @media (max-width: 720px) {
-    .nav-links {
-      position: fixed; inset: 0; top: 0; flex-direction: column; justify-content: center; align-items: center;
-      gap: 2.2rem; background: var(--bg); transform: translateX(100%); transition: transform 0.35s var(--ease);
-    }
-    .nav-links.open { transform: translateX(0); }
-    .nav-links a { font-size: 1rem; }
-    .nav-toggle { display: flex; }
- 
-    .stat-row { grid-template-columns: 1fr 1fr; row-gap: 1.6rem; }
-    .stat-row div:nth-child(2n) { border-right: none; }
- 
-    .skills-grid { grid-template-columns: 1fr; }
-    .about-portrait { max-width: 100%; }
-    .stack-layer { grid-template-columns: 2rem 1fr; padding: 0.9rem 1rem; }
-  }
- 
-  @media (max-width: 480px) {
-    .hero-content h1 { font-size: clamp(2.6rem, 14vw, 3.4rem); }
-    section { padding: 3.5rem 0; }
-  }
- 
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siphiwe Khumalo · Building Automation, IT Infrastructure &amp; Software</title>
+<meta name="description" content="Portfolio of Siphiwe Khumalo, IT Administrator at Spartcon Technologies, working across building automation (Tridium Niagara 4), IT infrastructure and software development. Case studies: ARC Glasshouse BMS, Department of Health Middelburg BMS, Spartcon Capture.">
+<meta name="author" content="Siphiwe Khumalo">
+<meta name="theme-color" content="#161718">
+<link rel="canonical" href="https://siphiwe-khumalo.github.io/Portfolio-Website-/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Siphiwe Khumalo · Building Automation, IT Infrastructure & Software">
+<meta property="og:description" content="BMS deployments for ARC Glasshouse and the Department of Health (Middelburg), IT infrastructure and business software, delivered at Spartcon Technologies.">
+<meta property="og:url" content="https://siphiwe-khumalo.github.io/Portfolio-Website-/">
+<meta property="og:image" content="https://siphiwe-khumalo.github.io/Portfolio-Website-/assets/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Siphiwe Khumalo","alternateName":"Ronnie","jobTitle":"IT Administrator","worksFor":{"@type":"Organization","name":"Spartcon Technologies"},"url":"https://siphiwe-khumalo.github.io/Portfolio-Website-/","sameAs":["https://github.com/Siphiwe-Khumalo","https://www.linkedin.com/in/siphiwe-khumalo-97a0aa306/"]}
+</script>
 </head>
 <body>
- 
-  <header class="site-nav" id="siteNav">
-    <a href="#hero" class="nav-mark" aria-label="Back to top">SK</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">Who I Am</a></li>
-      <li><a href="#how-i-work">How I Work</a></li>
-      <li><a href="#tech">Tech &amp; IT</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
- 
-  <!-- ================= HERO ================= -->
-  <section id="hero">
-    <div class="hero-media">
-      <img src="banner.jpg" alt="" role="presentation" />
-    </div>
-    <div class="hero-content">
-      <span class="eyebrow">IT &amp; Technology</span>
-      <h1>Siphiwe<br />Khumalo</h1>
-      <p class="hero-tagline">I work across the stack — hardware, networks, infrastructure, cloud, and code — to keep technology doing what it's supposed to do.</p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-fill">See what I've built</a>
-        <a href="#contact" class="btn">Get in touch</a>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= WHO I AM ================= -->
-  <section id="about">
-    <div class="wrap">
-      <div class="about-grid">
-        <div class="about-copy">
-          <span class="eyebrow">Who I Am</span>
-          <h3>Curious about how it all fits together</h3>
-          <p>I'm <strong>Siphiwe Khumalo</strong> — most people call me Ronnie. I'm interested in technology as a whole system, not just the part that's visible on screen. A slow computer, a flaky connection, a site that won't load, a business process held together with spreadsheets — I want to know what's actually happening underneath, and then fix it.</p>
-          <p>Day to day that means I move between different layers of the same problem: sorting out a hardware or network issue one moment, writing and shipping code the next. I currently split my time between freelance development work and hands-on IT support, alongside studies in Tourism — a background that keeps me thinking about technology from the perspective of the people actually using it, not just the systems themselves.</p>
- 
-          <div class="stat-row">
-            <div><h4>15+</h4><p>Projects completed</p></div>
-            <div><h4>3+</h4><p>Years building &amp; troubleshooting</p></div>
-            <div><h4>6</h4><p>Layers of the stack I work across</p></div>
-          </div>
-        </div>
- 
-        <div class="about-portrait">
-          <img src="image.png" alt="Siphiwe Khumalo" />
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= HOW I WORK ================= -->
-  <section id="how-i-work">
-    <div class="wrap">
-      <div class="work-grid">
-        <div class="work-copy">
-          <span class="eyebrow">How I Work</span>
-          <h2 style="margin-bottom:1.3rem;">One system, six layers</h2>
-          <p>Most problems don't stay in one layer. A "slow website" might actually be a network issue. A "broken system" might just be a hardware fault upstream. I try to start wherever the problem is actually happening, not wherever it's easiest for me to look.</p>
-          <p><strong>This is roughly how I think about the stack</strong> — and where in it I tend to spend my time.</p>
-        </div>
- 
-        <div class="stack">
-          <div class="stack-layer">
-            <span class="idx">01</span>
-            <div><h4>Hardware</h4><p>Diagnosing and fixing the physical machines — PCs, peripherals, the stuff that fails first.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">02</span>
-            <div><h4>Networks</h4><p>Getting devices talking to each other reliably, from Wi-Fi to wired infrastructure.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">03</span>
-            <div><h4>Infrastructure</h4><p>The wiring behind the scenes — including systems like CCTV and VoIP that businesses depend on daily.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">04</span>
-            <div><h4>Cloud &amp; Systems</h4><p>Microsoft 365, cloud services, and the administration that keeps them running smoothly.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">05</span>
-            <div><h4>Software &amp; Web</h4><p>Building the applications and websites people actually interact with.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">06</span>
-            <div><h4>Users &amp; Businesses</h4><p>Where all of the above has to translate into something that just works for the person relying on it.</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= TECH & IT ================= -->
-  <section id="tech">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Technology &amp; IT</span>
-        <h2>Where I Spend My Time</h2>
-        <p class="lede">Not a skills list so much as a map of the areas I'm actively working in and around, from the hands-on to the behind-the-scenes.</p>
-      </div>
- 
-      <div class="skills-grid">
-        <div class="skill-col">
-          <h3>Hands-On Support</h3>
-          <ul>
-            <li>IT Support &amp; Troubleshooting</li>
-            <li>Hardware &amp; PC Diagnostics</li>
-            <li>Networking</li>
-            <li>CCTV &amp; Security Systems</li>
-            <li>VoIP</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Infrastructure &amp; Systems</h3>
-          <ul>
-            <li>System Administration</li>
-            <li>Microsoft 365</li>
-            <li>Cloud Services</li>
-            <li>Automation</li>
-            <li>Cybersecurity Fundamentals</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Software &amp; Web</h3>
-          <ul>
-            <li>JavaScript, HTML &amp; CSS</li>
-            <li>React.js</li>
-            <li>Node.js &amp; RESTful APIs</li>
-            <li>Firebase</li>
-            <li>Git &amp; Version Control</li>
-          </ul>
-        </div>
-      </div>
- 
-      <div class="tools-row">
-        <span class="eyebrow">Tools I Reach For</span>
-        <div class="tool-badges">
-          <span class="tool-badge">Windows &amp; Microsoft 365</span>
-          <span class="tool-badge">Git &amp; GitHub</span>
-          <span class="tool-badge">VS Code</span>
-          <span class="tool-badge">Figma &amp; Canva</span>
-          <span class="tool-badge">Firebase</span>
-          <span class="tool-badge">REST APIs</span>
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= PROJECTS ================= -->
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Real Work</span>
-        <h2>Projects &amp; Problems I've Worked Through</h2>
-        <p class="lede">A handful of the things I've actually built — mostly self-directed, all used as a chance to learn something specific.</p>
-      </div>
- 
-      <div class="projects-list">
- 
-        <div class="project-row">
-          <div class="project-image"><img src="smart.jpg" alt="SmartMailGen preview" /></div>
-          <div class="project-info">
-            <h3>SmartMailGen</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>Writing a clear, professional email from scratch takes longer than it should when you're short on time.</dd>
-              <dt>What I built</dt>
-              <dd>A tool that generates context-aware email responses by connecting a simple interface to the OpenAI API.</dd>
-              <dt>What I learned</dt>
-              <dd>How to design a prompt and interface together so the output stays consistently usable, not just occasionally good.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript · OpenAI API</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/Smart-Email-Generator/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/Smart-Email-Generator" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-        <div class="project-row">
-          <div class="project-image"><img src="glowup.jpg" alt="GlowUp Lamp landing page preview" /></div>
-          <div class="project-info">
-            <h3>GlowUp Lamp Landing Page</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>A product page needs to build enough trust and interest in a few seconds to actually convert a visitor.</dd>
-              <dt>What I built</dt>
-              <dd>An e-commerce landing page for a smart lighting product, with an interactive product showcase and a deliberate conversion flow.</dd>
-              <dt>What I learned</dt>
-              <dd>Where animation actually helps a purchase decision, and where it just gets in the way.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/Glowup-Product-Landing-Page-/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/Glowup-Product-Landing-Page-" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-        <div class="project-row">
-          <div class="project-image"><img src="verse.jpg" alt="CineVerse preview" /></div>
-          <div class="project-info">
-            <h3>CineVerse</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>Wanted hands-on practice pulling and filtering real, live data rather than static content.</dd>
-              <dt>What I built</dt>
-              <dd>A movie discovery platform with real-time data fetching, advanced filtering, and recommendations built on the TMDB API.</dd>
-              <dt>What I learned</dt>
-              <dd>How to structure an app around an external API's quirks and limits without the whole thing becoming fragile.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript · TMDB API</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/CineVerse.html/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/CineVerse.html" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-        <div class="project-row">
-          <div class="project-image"><img src="qoute.jpg" alt="Random Quote Generator preview" /></div>
-          <div class="project-info">
-            <h3>Random Quote Generator</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>A small, self-contained project to practice API calls and clean, minimal UI in one sitting.</dd>
-              <dt>What I built</dt>
-              <dd>A minimalist app that delivers quotes with smooth transitions and social sharing built in.</dd>
-              <dt>What I learned</dt>
-              <dd>How much restraint improves a simple interface once the core interaction actually works.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript · Quotes API</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/Random-Quote-Generator-/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/Random-Quote-Generator-" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-        <div class="project-row">
-          <div class="project-image"><img src="ronnie.jpg" alt="RonnieAi FAQs Assistant preview" /></div>
-          <div class="project-info">
-            <h3>RonnieAi FAQs Assistant</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>Repetitive questions are a real support burden — worth automating even at a small scale.</dd>
-              <dt>What I built</dt>
-              <dd>An FAQ chatbot that answers common questions through a conversational interface instead of a static list.</dd>
-              <dt>What I learned</dt>
-              <dd>Where a scripted, rule-based assistant is genuinely more reliable than trying to make it "smarter" than it needs to be.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript · AI Integration</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/not-so-Smart-Ai-FAQs-Assistant/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/not-so-Smart-Ai-FAQs-Assistant" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= EXPERIENCE ================= -->
-  <section id="experience">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Background</span>
-        <h2>Experience &amp; Education</h2>
-        <p class="lede">A developing technology professional, not a finished one — this is the order things actually happened in.</p>
-      </div>
- 
-      <div class="timeline">
-        <div class="timeline-item">
-          <span class="tag">Current</span>
-          <h3>IT Support &amp; Technical Troubleshooting</h3>
-          <p>Working in a hands-on IT support capacity, handling day-to-day hardware, network, and systems issues — the practical, on-the-ground side of keeping technology running.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="tag">Ongoing</span>
-          <h3>Freelance Web Developer</h3>
-          <p>Developed custom web solutions for small businesses and startups, including promotional pages, interactive tools, and e-commerce platforms — delivering 15+ projects to date.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="tag">Throughout</span>
-          <h3>Core Competencies</h3>
-          <p>Creative problem-solving, client communication, and project management, with a consistent emphasis on responsive design, performance, and actually understanding the person using what I build.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="tag">Background</span>
-          <h3>Academic Background — Tourism</h3>
-          <p>Studies in Tourism, exploring the intersection of technology and digital storytelling — a reminder that most of what I build is ultimately for someone outside of tech.</p>
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= CURRENTLY LEARNING ================= -->
-  <section id="learning">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">In Progress</span>
-        <h2>What I'm Learning Right Now</h2>
-      </div>
- 
-      <ul class="learning-list">
-        <li>
-          <span class="mark">→</span>
-          <div><span class="label">Networking &amp; Infrastructure</span><p class="note">Going deeper than day-to-day troubleshooting into how networks and infrastructure are actually designed.</p></div>
-        </li>
-        <li>
-          <span class="mark">→</span>
-          <div><span class="label">Cybersecurity Fundamentals</span><p class="note">Building a more deliberate understanding of the risks behind the systems I already support.</p></div>
-        </li>
-        <li>
-          <span class="mark">→</span>
-          <div><span class="label">Cloud Platforms</span><p class="note">Extending Microsoft 365 and cloud services knowledge beyond day-to-day administration.</p></div>
-        </li>
-        <li>
-          <span class="mark">→</span>
-          <div><span class="label">Advanced React &amp; WebGL</span><p class="note">Pushing the software side further — more advanced patterns and interactive, three-dimensional interfaces.</p></div>
-        </li>
-      </ul>
-    </div>
-  </section>
- 
-  <!-- ================= WHERE I'M HEADING ================= -->
-  <section id="heading">
-    <div class="wrap">
-      <div class="heading-copy">
-        <span class="eyebrow">Where I'm Heading</span>
-        <h2 style="margin-bottom:1.4rem;">Staying broad, on purpose</h2>
-        <p>I could narrow down to just IT support, or just development. I'm not in a hurry to do either. <strong>The version of my career I'm most interested in is one where the hardware, network, infrastructure, and software knowledge all keep informing each other</strong> — because in practice, that's how most real problems actually show up.</p>
-        <p>Longer term, that probably means growing into a role that sits across IT and technical systems more broadly, while keeping software and web development as a skill I keep sharp rather than one I set aside.</p>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= CONNECT ================= -->
-  <section id="connect">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Let's Connect</span>
-        <h2>Find Me Online</h2>
-      </div>
-      <p class="connect-lead">Open to conversations about IT, infrastructure, or development work — or just to talk through a technical problem you're stuck on.</p>
- 
-      <ul class="social-list">
-        <li>
-          <a href="https://github.com/Siphiwe-Khumalo" target="_blank" rel="noopener">
-            GitHub
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/siphiwe-khumalo-97a0aa306/" target="_blank" rel="noopener">
-            LinkedIn
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://vm.tiktok.com/ZSHcW9qoNontj-JoXkq/" target="_blank" rel="noopener">
-            TikTok
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
- 
-  <!-- ================= CONTACT ================= -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Get In Touch</span>
-        <h2>Start a Conversation</h2>
-      </div>
- 
-      <form class="contact-form">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input id="name" type="text" placeholder="Ronnie Khumalo" required />
-        </div>
-        <div class="form-group">
-          <label for="email">Your Email</label>
-          <input id="email" type="email" placeholder="Ronnie@example.com" required />
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell me what you're working on..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-fill">Send Message</button>
-      </form>
-    </div>
-  </section>
- 
-  <footer>
-    <div class="footer-inner">
-      <p>&copy; 2026 Siphiwe Khumalo. All Rights Reserved.</p>
-      <ul>
-        <li><a href="#hero">Home</a></li>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v13m-6-6 6 6 6-6M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+</svg>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="wrap">
+    <a class="brand" href="#main" aria-label="Siphiwe Khumalo, back to top"><span class="brand-mark" aria-hidden="true">SK</span><span class="brand-name">Siphiwe Khumalo</span></a>
+    <nav aria-label="Main">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Open menu"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#connect">Connect</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Certifications</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="label">IT Administrator · Spartcon Technologies</p>
+        <h1>Siphiwe<span>Khumalo</span></h1>
+        <p class="hero-statement">Building automation, IT infrastructure and software, treated as one system.</p>
+        <p class="hero-intro">I build and support the technology that keeps buildings and businesses running: Niagara-based building management interfaces, the networks and remote access behind them, and the internal software people use every day. At Spartcon I have contributed to two BMS deployments that are now handed over and in use.</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#projects">Explore the projects <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn" href="#contact">Get in touch</a>
+          <a class="btn" href="Siphiwe-Khumalo-Portfolio.pdf" download>PDF portfolio <svg aria-hidden="true"><use href="#i-down"/></svg></a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <img src="assets/img/profile/on-site.webp" width="1400" height="1859" alt="Siphiwe Khumalo in a high-visibility vest beside a floor-standing equipment cabinet on a Spartcon site" fetchpriority="high">
+        <figcaption class="mono"><span>On site · Spartcon</span><span>Nov 2026</span></figcaption>
+      </figure>
     </div>
-  </footer>
- 
-  <script>
-    // Smooth scroll for in-page anchors
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-      anchor.addEventListener('click', function (e) {
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          var navLinks = document.getElementById('navLinks');
-          var navToggle = document.getElementById('navToggle');
-          if (navLinks.classList.contains('open')) {
-            navLinks.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-          }
-        }
-      });
-    });
- 
-    // Contact form (demo behaviour)
-    document.querySelector('.contact-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Message sent! (This is a demo - connect your actual form handler)');
-    });
- 
-    // Nav background on scroll
-    var nav = document.getElementById('siteNav');
-    var onScroll = function () {
-      if (window.scrollY > 40) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
- 
-    // Mobile nav toggle
-    var navToggle = document.getElementById('navToggle');
-    var navLinks = document.getElementById('navLinks');
-    navToggle.addEventListener('click', function () {
-      var isOpen = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  </script>
-</body>
-</html>
- 
-
-
-
-
-Chat
-
-New Chat
-hi bro, just got to work. what are we working on today'
-
-
-
-
-Claude Opus 4.8
-Hey! I appreciate the friendly vibe, but I should be straight with you—I don't actually have any context about what you're working on. I'm not a coworker who's been on a project with you, and I don't have memory of previous conversations or access to your work.
-So I can't pick up where "we" left off, because there's no shared thread on my end.
-That said, I'm happy to actually help. What are you working on? If you fill me in—what the task is, what tech or tools you're using, where you're stuck—I can dig in properly.
-What's on your plate today?
-Compare with AITOPIA
-
-
-
-
-he also mentioned he doesnt mind digging the cable. so my question is, the camera has ethernet port
-
-
-
-
-Claude Opus 4.8
-Got it—sounds like you're doing a camera install and the client's fine with you trenching/digging to run the cable. Let me help with the actual question.
-Since the camera has an Ethernet port, a few things worth confirming:
-1. Does it support PoE (Power over Ethernet)?
-This is the big one. If it does, you can run a single Ethernet cable for both data and power—no separate power line needed. Most IP cameras with an Ethernet port support PoE, but check the specs.
-2. For buried/outdoor cable runs:
-
-Use direct-burial rated cable (gel-filled or shielded, rated for outdoor/underground). Don't use regular indoor Cat5e/Cat6.
-
-Better yet, run it through conduit even if the cable is burial-rated—makes future replacement way easier.
-
-Bury below the frost line / local code depth (often ~18–24 inches, but check local rules).
-
-
-3. Distance limit:
-Ethernet maxes out around **100 meters (328 ft
-Compare with AITOPIA
-
-
-
-
-
-Claude Opus 4.8
-
-
-
-
-
-
-
-
-
-Index · HTML
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Siphiwe Khumalo | IT & Technology</title>
-<meta name="description" content="Siphiwe Khumalo — technology professional working across hardware, networks, infrastructure, cloud and software. Portfolio, projects, and contact." />
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
- 
-  :root {
-    --bg: #111110;
-    --text: #f2efe8;
-    --text-muted: #9c988c;
-    --text-faint: #6f6c63;
-    --accent: #c9a568;
-    --accent-soft: rgba(201, 165, 104, 0.35);
-    --border: rgba(242, 239, 232, 0.12);
-    --border-strong: rgba(242, 239, 232, 0.24);
-    --max: 1180px;
-    --gap: clamp(1.5rem, 4vw, 3rem);
-    --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  }
- 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
- 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
- 
-  img { display: block; max-width: 100%; }
-  a { color: inherit; }
-  ::selection { background: var(--accent-soft); color: var(--text); }
- 
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-    outline: 1px solid var(--accent);
-    outline-offset: 3px;
-  }
- 
-  .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--gap); padding-right: var(--gap); }
- 
-  .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: inline-block;
-    margin-bottom: 0.9rem;
-  }
- 
-  h2 {
-    font-family: 'Big Shoulders Display', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(2rem, 4.2vw, 3.1rem);
-    letter-spacing: 0.01em;
-    line-height: 1;
-  }
- 
-  section { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
-  section + section { border-top: 1px solid var(--border); }
-  .section-head { margin-bottom: clamp(2.5rem, 6vw, 4rem); max-width: 62ch; }
-  .section-head p.lede { color: var(--text-muted); margin-top: 1rem; font-size: 1rem; }
- 
-  /* ---------- Nav ---------- */
-  header.site-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 1.4rem var(--gap);
-    display: flex; align-items: center; justify-content: space-between;
-    transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease), padding 0.35s var(--ease);
-    border-bottom: 1px solid transparent;
-  }
-  header.site-nav.scrolled {
-    background: rgba(17, 17, 16, 0.92);
-    backdrop-filter: blur(6px);
-    border-bottom-color: var(--border);
-    padding-top: 1rem; padding-bottom: 1rem;
-  }
-  .nav-mark {
-    width: 34px; height: 34px;
-    border: 1px solid var(--border-strong);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Big Shoulders Display', sans-serif;
-    font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em;
-    color: var(--text); text-decoration: none; flex-shrink: 0;
-  }
-  .nav-links { display: flex; gap: 1.9rem; list-style: none; }
-  .nav-links a {
-    text-decoration: none; font-size: 0.74rem; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--text-muted); font-weight: 500;
-    position: relative; padding-bottom: 4px;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px;
-    background: var(--accent); transition: width 0.25s var(--ease);
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { width: 100%; }
- 
-  .nav-toggle {
-    display: none; background: none; border: 1px solid var(--border-strong);
-    width: 40px; height: 40px; align-items: center; justify-content: center;
-    cursor: pointer; flex-direction: column; gap: 5px;
-  }
-  .nav-toggle span { display: block; width: 18px; height: 1px; background: var(--text); transition: transform 0.25s var(--ease), opacity 0.25s var(--ease); }
-  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
- 
-  /* ---------- Hero ---------- */
-  #hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; background: #0c0c0b; }
-  .hero-media { position: absolute; inset: 0; overflow: hidden; }
-  .hero-media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(35%) contrast(1.04); }
-  .hero-media::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(12,12,11,0.25) 0%, rgba(12,12,11,0.55) 55%, var(--bg) 96%),
-                linear-gradient(to right, rgba(12,12,11,0.35) 0%, transparent 45%);
-  }
-  .hero-content { position: relative; width: 100%; padding: 0 var(--gap) clamp(3rem, 8vw, 5.5rem); }
-  .hero-content .eyebrow { margin-bottom: 1.1rem; }
-  .hero-content h1 {
-    font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; text-transform: uppercase;
-    font-size: clamp(3.1rem, 10vw, 7.4rem); line-height: 0.9; letter-spacing: 0.005em; max-width: 16ch;
-  }
-  .hero-tagline { margin-top: 1.6rem; max-width: 46ch; color: var(--text-muted); font-size: 1.02rem; font-weight: 300; }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.4rem; }
- 
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem;
-    border: 1px solid var(--border-strong); border-radius: 999px;
-    font-family: 'IBM Plex Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.06em;
-    text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--text);
-    background: transparent; cursor: pointer; transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
-  }
-  .btn:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-fill { background: var(--text); color: var(--bg); border-color: var(--text); }
-  .btn-fill:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
- 
-  /* ---------- About ---------- */
-  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: start; }
-  .about-copy h3 {
-    font-family: 'Big Shoulders Display', sans-serif; font-size: clamp(1.5rem, 2.4vw, 2rem);
-    text-transform: uppercase; font-weight: 700; margin-bottom: 1.2rem; letter-spacing: 0.01em;
-  }
-  .about-copy p { color: var(--text-muted); margin-bottom: 1.1rem; max-width: 58ch; }
-  .about-copy p strong { color: var(--text); font-weight: 500; }
- 
-  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2.6rem; border-top: 1px solid var(--border); }
-  .stat-row div { padding: 1.4rem 1.2rem 0 0; border-right: 1px solid var(--border); }
-  .stat-row div:last-child { border-right: none; padding-right: 0; }
-  .stat-row h4 {
-    font-family: 'Big Shoulders Display', sans-serif; font-size: clamp(1.6rem, 3vw, 2.3rem);
-    color: var(--accent); font-weight: 700; line-height: 1;
-  }
-  .stat-row p { font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-faint); margin-top: 0.5rem; font-family: 'IBM Plex Mono', monospace; }
- 
-  .about-portrait { position: relative; border: 1px solid var(--border); padding: 14px; }
-  .about-portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(55%) contrast(1.05); }
-  .about-portrait::before, .about-portrait::after { content: ''; position: absolute; width: 22px; height: 22px; border: 1px solid var(--accent); }
-  .about-portrait::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-  .about-portrait::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
- 
-  /* ---------- How I Work / Stack diagram (signature element) ---------- */
-  .work-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
-  .work-copy p { color: var(--text-muted); margin-bottom: 1.1rem; max-width: 52ch; }
-  .work-copy p strong { color: var(--text); font-weight: 500; }
- 
-  .stack {
-    display: flex; flex-direction: column; border: 1px solid var(--border);
-  }
-  .stack-layer {
-    display: grid; grid-template-columns: 2.6rem 1fr; align-items: center;
-    padding: 1.05rem 1.3rem;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    transition: background-color 0.25s var(--ease), padding-left 0.25s var(--ease);
-  }
-  .stack-layer:last-child { border-bottom: none; }
-  .stack-layer:hover { background: rgba(242,239,232,0.03); padding-left: 1.7rem; }
-  .stack-layer .idx {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--accent);
-  }
-  .stack-layer h4 {
-    font-family: 'Big Shoulders Display', sans-serif; font-size: 1.05rem; text-transform: uppercase;
-    font-weight: 700; letter-spacing: 0.02em; margin-bottom: 0.2rem;
-  }
-  .stack-layer p { color: var(--text-muted); font-size: 0.88rem; max-width: 42ch; }
-  .stack-layer .idx::after {
-    content: ''; display: block; width: 1px; height: 1.6rem; background: var(--border-strong);
-    margin: 0.4rem auto 0;
-  }
-  .stack-layer:last-child .idx::after { display: none; }
- 
-  /* ---------- Skills / Tech & IT ---------- */
-  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(2rem, 5vw, 3.5rem); }
-  .skill-col h3 {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent); padding-bottom: 0.9rem; border-bottom: 1px solid var(--border-strong); margin-bottom: 0.4rem;
-  }
-  .skill-col p.col-note { color: var(--text-faint); font-size: 0.82rem; margin: 0.7rem 0 0.3rem; }
-  .skill-col ul { list-style: none; }
-  .skill-col li { padding: 0.75rem 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem; }
-  .skill-col li:last-child { border-bottom: none; }
- 
-  .tools-row { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--border); }
-  .tools-row .eyebrow { display: block; margin-bottom: 1.4rem; }
-  .tool-badges { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .tool-badge {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; padding: 0.5rem 1rem;
-    border: 1px solid var(--border-strong); border-radius: 999px; color: var(--text-muted);
-    transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
-  }
-  .tool-badge:hover { border-color: var(--accent); color: var(--accent); }
- 
-  /* ---------- Projects ---------- */
-  .projects-list { display: flex; flex-direction: column; }
-  .project-row {
-    display: grid; grid-template-columns: 0.9fr 1.5fr; gap: clamp(1.6rem, 4vw, 3rem);
-    padding: clamp(2rem, 4vw, 3rem) 0; border-bottom: 1px solid var(--border); align-items: start;
-  }
-  .project-row:first-child { padding-top: 0; }
-  .project-row:last-child { border-bottom: none; padding-bottom: 0; }
- 
-  .project-image { position: relative; overflow: hidden; aspect-ratio: 16 / 11; border: 1px solid var(--border); }
-  .project-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(70%) contrast(1.05); transition: filter 0.4s var(--ease), transform 0.5s var(--ease); }
-  .project-row:hover .project-image img { filter: grayscale(0%) contrast(1.05); transform: scale(1.03); }
- 
-  .project-info h3 { font-family: 'Big Shoulders Display', sans-serif; font-size: 1.6rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.9rem; }
-  .project-info .story dt {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-faint); margin-top: 0.9rem;
-  }
-  .project-info .story dt:first-child { margin-top: 0; }
-  .project-info .story dd { color: var(--text-muted); font-size: 0.94rem; margin-top: 0.25rem; }
- 
-  .tech-used {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-faint);
-    text-transform: uppercase; margin-top: 1.2rem;
-  }
-  .project-links { display: flex; gap: 1.4rem; padding-top: 1rem; margin-top: 1rem; border-top: 1px solid var(--border); }
-  .project-links a {
-    text-decoration: none; font-size: 0.82rem; letter-spacing: 0.04em; color: var(--text); font-weight: 500;
-    display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.25s var(--ease);
-  }
-  .project-links a:hover { color: var(--accent); }
-  .project-links a svg { width: 12px; height: 12px; transition: transform 0.25s var(--ease); }
-  .project-links a:hover svg { transform: translate(2px, -2px); }
- 
-  /* ---------- Experience ---------- */
-  .timeline { position: relative; padding-left: clamp(2rem, 5vw, 3.2rem); max-width: 760px; }
-  .timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--border-strong); }
-  .timeline-item { position: relative; padding-bottom: clamp(2rem, 4vw, 2.8rem); }
-  .timeline-item:last-child { padding-bottom: 0; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: calc(-1 * clamp(2rem, 5vw, 3.2rem) + 1px); top: 6px;
-    width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1px solid var(--accent);
-  }
-  .timeline-item .tag {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); display: block; margin-bottom: 0.4rem;
-  }
-  .timeline-item h3 { font-family: 'Big Shoulders Display', sans-serif; font-size: 1.25rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; }
-  .timeline-item p { color: var(--text-muted); max-width: 60ch; }
- 
-  /* ---------- Learning ---------- */
-  .learning-list { list-style: none; max-width: 720px; }
-  .learning-list li {
-    display: flex; align-items: baseline; gap: 1.2rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border);
-  }
-  .learning-list li:first-child { border-top: 1px solid var(--border); }
-  .learning-list .mark { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--accent); flex-shrink: 0; width: 1.4rem; }
-  .learning-list .label { font-family: 'Big Shoulders Display', sans-serif; font-size: 1.1rem; text-transform: uppercase; font-weight: 700; }
-  .learning-list .note { color: var(--text-muted); font-size: 0.88rem; margin-top: 0.2rem; }
- 
-  /* ---------- Heading (where I'm heading) ---------- */
-  .heading-copy { max-width: 62ch; }
-  .heading-copy p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.1rem; }
-  .heading-copy p strong { color: var(--text); font-weight: 500; }
- 
-  /* ---------- Connect / Contact ---------- */
-  .connect-lead { max-width: 52ch; color: var(--text-muted); margin-bottom: 2.6rem; }
-  .social-list { list-style: none; display: flex; flex-direction: column; max-width: 420px; }
-  .social-list li { border-bottom: 1px solid var(--border); }
-  .social-list li:first-child { border-top: 1px solid var(--border); }
-  .social-list a {
-    display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0.2rem;
-    text-decoration: none; color: var(--text); font-family: 'Big Shoulders Display', sans-serif;
-    text-transform: uppercase; font-size: 1.15rem; letter-spacing: 0.02em;
-    transition: color 0.25s var(--ease), padding-left 0.25s var(--ease);
-  }
-  .social-list a:hover { color: var(--accent); padding-left: 0.6rem; }
-  .social-list a svg { width: 16px; height: 16px; opacity: 0.7; }
- 
-  .contact-form { max-width: 560px; }
-  .form-group { margin-bottom: 1.8rem; }
-  .form-group label {
-    display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.6rem;
-  }
-  .form-group input, .form-group textarea {
-    width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-strong);
-    padding: 0.7rem 0.1rem; color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 1rem;
-    transition: border-color 0.25s var(--ease);
-  }
-  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-faint); }
-  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
-  .form-group textarea { min-height: 110px; resize: vertical; }
- 
-  /* ---------- Footer ---------- */
-  footer { border-top: 1px solid var(--border); padding: 2.6rem var(--gap); }
-  .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem; }
-  footer p { color: var(--text-faint); font-size: 0.82rem; }
-  footer ul { list-style: none; display: flex; gap: 1.6rem; }
-  footer a { text-decoration: none; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
-  footer a:hover { color: var(--accent); }
- 
-  /* ---------- Responsive ---------- */
-  @media (max-width: 860px) {
-    .about-grid, .work-grid { grid-template-columns: 1fr; }
-    .about-portrait { max-width: 340px; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .project-row { grid-template-columns: 1fr; }
-  }
- 
-  @media (max-width: 720px) {
-    .nav-links {
-      position: fixed; inset: 0; top: 0; flex-direction: column; justify-content: center; align-items: center;
-      gap: 2.2rem; background: var(--bg); transform: translateX(100%); transition: transform 0.35s var(--ease);
-    }
-    .nav-links.open { transform: translateX(0); }
-    .nav-links a { font-size: 1rem; }
-    .nav-toggle { display: flex; }
- 
-    .stat-row { grid-template-columns: 1fr 1fr; row-gap: 1.6rem; }
-    .stat-row div:nth-child(2n) { border-right: none; }
- 
-    .skills-grid { grid-template-columns: 1fr; }
-    .about-portrait { max-width: 100%; }
-    .stack-layer { grid-template-columns: 2rem 1fr; padding: 0.9rem 1rem; }
-  }
- 
-  @media (max-width: 480px) {
-    .hero-content h1 { font-size: clamp(2.6rem, 14vw, 3.4rem); }
-    section { padding: 3.5rem 0; }
-  }
- 
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-  }
-</style>
-</head>
-<body>
- 
-  <header class="site-nav" id="siteNav">
-    <a href="#hero" class="nav-mark" aria-label="Back to top">SK</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">Who I Am</a></li>
-      <li><a href="#how-i-work">How I Work</a></li>
-      <li><a href="#tech">Tech &amp; IT</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <ul class="hero-facts">
+      <li><strong>2 BMS deployments</strong><span>ARC Glasshouse · DoH Middelburg</span></li>
+      <li><strong>Tridium Niagara 4</strong><span>Exam passed · 83%</span></li>
+      <li><strong>3 disciplines</strong><span>Automation · IT · Software</span></li>
     </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
- 
-  <!-- ================= HERO ================= -->
-  <section id="hero">
-    <div class="hero-media">
-      <img src="banner.jpg" alt="" role="presentation" />
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <p class="label reveal">01 / About</p>
+    <div class="about-copy reveal">
+      <p class="big">I like knowing what is actually happening underneath a system, and then making it dependable for the people who rely on it.</p>
+      <p>I'm <strong>Siphiwe Khumalo</strong>, known to most people as Ronnie. I started in freelance web development and hands-on IT support. That mix taught me that problems rarely stay in one layer: a "broken dashboard" can be a network route, a controller setting or a single point name.</p>
+      <p>Since joining <strong>Spartcon Technologies</strong> as IT Administrator in August 2026, I have worked on live building automation projects. I developed the operator interfaces for the ARC Glasshouse and Department of Health (Middelburg) BMS deployments, set up the site infrastructure and remote access behind them, and built internal business applications for the team.</p>
+      <p>I'm still early in my career, and I treat each deployment as a chance to deepen my engineering knowledge. In October 2026 I completed Tridium's five-day Niagara training and passed the exam with 83%.</p>
     </div>
-    <div class="hero-content">
-      <span class="eyebrow">IT &amp; Technology</span>
-      <h1>Siphiwe<br />Khumalo</h1>
-      <p class="hero-tagline">I work across the stack — hardware, networks, infrastructure, cloud, and code — to keep technology doing what it's supposed to do.</p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-fill">See what I've built</a>
-        <a href="#contact" class="btn">Get in touch</a>
-      </div>
+    <figure class="about-figure reveal">
+      <img src="assets/img/profile/portrait.webp" width="1100" height="1100" alt="Portrait of Siphiwe Khumalo in a dark suit" loading="lazy">
+      <figcaption class="mono">Siphiwe "Ronnie" Khumalo</figcaption>
+    </figure>
+    <ul class="principles reveal">
+      <li><span class="label">Approach 01</span><h4>Start where the fault really is</h4><p>Trace a problem through hardware, network, controller and software before deciding what to change.</p></li>
+      <li><span class="label">Approach 02</span><h4>Make the safe action the easy one</h4><p>Confirm every command, verify it against the controller, and never present old data as live.</p></li>
+      <li><span class="label">Approach 03</span><h4>Hand over something people can run</h4><p>Clear interfaces, written guides and on-site training, so the system keeps working after I leave.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== EXPERIENCE ========== -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="label">02 / Experience</p>
+      <div><h2>Professional experience</h2><p class="lede">Practical work across building automation projects, company IT and software, plus the freelance work that came before it.</p></div>
     </div>
-  </section>
- 
-  <!-- ================= WHO I AM ================= -->
-  <section id="about">
-    <div class="wrap">
-      <div class="about-grid">
-        <div class="about-copy">
-          <span class="eyebrow">Who I Am</span>
-          <h3>Curious about how it all fits together</h3>
-          <p>I'm <strong>Siphiwe Khumalo</strong> — most people call me Ronnie. I'm interested in technology as a whole system, not just the part that's visible on screen. A slow computer, a flaky connection, a site that won't load, a business process held together with spreadsheets — I want to know what's actually happening underneath, and then fix it.</p>
-          <p>Day to day that means I move between different layers of the same problem: sorting out a hardware or network issue one moment, writing and shipping code the next. I currently split my time between freelance development work and hands-on IT support, alongside studies in Tourism — a background that keeps me thinking about technology from the perspective of the people actually using it, not just the systems themselves.</p>
- 
-          <div class="stat-row">
-            <div><h4>15+</h4><p>Projects completed</p></div>
-            <div><h4>3+</h4><p>Years building &amp; troubleshooting</p></div>
-            <div><h4>6</h4><p>Layers of the stack I work across</p></div>
-          </div>
+    <div class="roles">
+      <article class="role reveal">
+        <p class="role-when mono"><b>Aug 2026 – Present</b>Full time</p>
+        <div>
+          <h3>IT Administrator</h3>
+          <p class="org">Spartcon Technologies</p>
+          <ul class="duty-list">
+            <li><b>Building automation.</b> Developed the operator interfaces for BMS deployments at ARC Glasshouse and the Department of Health facility in Middelburg, working with Tridium Niagara 4 and JACE controllers.</li>
+            <li><b>IT infrastructure.</b> Set up and maintained the site host PC that runs the Middelburg dashboard around the clock, including start-up automation and data backup.</li>
+            <li><b>Networking and connectivity.</b> Configured site connectivity and secure remote access so the client can monitor the facility from off site.</li>
+            <li><b>Technical troubleshooting.</b> Diagnosed communication, point-mapping and control issues during commissioning, together with the controls integrator.</li>
+            <li><b>Software solutions.</b> Designed and built internal applications for Spartcon, including Spartcon Capture (invoice processing) and Spartcon Timesheet.</li>
+            <li><b>Deployment and handover.</b> Produced user guides and signage, trained client staff on site and supported formal project handover.</li>
+          </ul>
+          <p class="milestones mono"><span><b>9 Oct 2026</b> · ARC Glasshouse handover</span><span><b>30 Oct 2026</b> · Tridium exam, 83%</span><span><b>11 Nov 2026</b> · Middelburg handover</span></p>
         </div>
- 
-        <div class="about-portrait">
-          <img src="image.png" alt="Siphiwe Khumalo" />
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= HOW I WORK ================= -->
-  <section id="how-i-work">
-    <div class="wrap">
-      <div class="work-grid">
-        <div class="work-copy">
-          <span class="eyebrow">How I Work</span>
-          <h2 style="margin-bottom:1.3rem;">One system, six layers</h2>
-          <p>Most problems don't stay in one layer. A "slow website" might actually be a network issue. A "broken system" might just be a hardware fault upstream. I try to start wherever the problem is actually happening, not wherever it's easiest for me to look.</p>
-          <p><strong>This is roughly how I think about the stack</strong> — and where in it I tend to spend my time.</p>
-        </div>
- 
-        <div class="stack">
-          <div class="stack-layer">
-            <span class="idx">01</span>
-            <div><h4>Hardware</h4><p>Diagnosing and fixing the physical machines — PCs, peripherals, the stuff that fails first.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">02</span>
-            <div><h4>Networks</h4><p>Getting devices talking to each other reliably, from Wi-Fi to wired infrastructure.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">03</span>
-            <div><h4>Infrastructure</h4><p>The wiring behind the scenes — including systems like CCTV and VoIP that businesses depend on daily.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">04</span>
-            <div><h4>Cloud &amp; Systems</h4><p>Microsoft 365, cloud services, and the administration that keeps them running smoothly.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">05</span>
-            <div><h4>Software &amp; Web</h4><p>Building the applications and websites people actually interact with.</p></div>
-          </div>
-          <div class="stack-layer">
-            <span class="idx">06</span>
-            <div><h4>Users &amp; Businesses</h4><p>Where all of the above has to translate into something that just works for the person relying on it.</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= TECH & IT ================= -->
-  <section id="tech">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Technology &amp; IT</span>
-        <h2>Where I Spend My Time</h2>
-        <p class="lede">Not a skills list so much as a map of the areas I'm actively working in and around, from the hands-on to the behind-the-scenes.</p>
-      </div>
- 
-      <div class="skills-grid">
-        <div class="skill-col">
-          <h3>Hands-On Support</h3>
-          <ul>
-            <li>IT Support &amp; Troubleshooting</li>
-            <li>Hardware &amp; PC Diagnostics</li>
-            <li>Networking</li>
-            <li>CCTV &amp; Security Systems</li>
-            <li>VoIP</li>
+      </article>
+      <article class="role reveal">
+        <p class="role-when mono"><b>Before Aug 2026</b>Freelance</p>
+        <div>
+          <h3>Web Developer &amp; IT Support</h3>
+          <p class="org">Independent</p>
+          <ul class="duty-list">
+            <li><b>Web development.</b> Built websites, landing pages and interactive tools for small businesses and personal projects, using HTML, CSS, JavaScript and third-party APIs.</li>
+            <li><b>IT support.</b> Hands-on hardware, network and systems troubleshooting, including Microsoft 365 and general user support.</li>
           </ul>
         </div>
-        <div class="skill-col">
-          <h3>Infrastructure &amp; Systems</h3>
-          <ul>
-            <li>System Administration</li>
-            <li>Microsoft 365</li>
-            <li>Cloud Services</li>
-            <li>Automation</li>
-            <li>Cybersecurity Fundamentals</li>
-          </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROJECTS ========== -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="label">03 / Featured projects</p>
+      <div><h2>Case studies</h2><p class="lede">Three projects that show how I work: two building management systems delivered with Spartcon, and an internal business application. Select any image to view it full screen.</p></div>
+    </div>
+
+    <!-- ===== ARC ===== -->
+    <article class="case" id="arc-glasshouse">
+      <header class="case-head reveal">
+        <p class="case-index">01</p>
+        <div>
+          <p class="label">Building Management System · Software</p>
+          <h3>ARC Glasshouse: greenhouse BMS interface</h3>
+          <p class="summary">A custom operator interface for the Agricultural Research Council's glasshouse facility. It monitors and controls ten greenhouses from wall-mounted touchscreens, running on a Tridium Niagara 4 controls platform.</p>
+          <dl class="case-meta">
+            <div><dt>Client</dt><dd>ARC Glasshouse</dd></div>
+            <div><dt>Delivered with</dt><dd>Spartcon Technologies</dd></div>
+            <div><dt>My role</dt><dd>BMS interface software</dd></div>
+            <div><dt>Handover</dt><dd>9 October 2026</dd></div>
+          </dl>
         </div>
-        <div class="skill-col">
-          <h3>Software &amp; Web</h3>
-          <ul>
-            <li>JavaScript, HTML &amp; CSS</li>
-            <li>React.js</li>
-            <li>Node.js &amp; RESTful APIs</li>
-            <li>Firebase</li>
-            <li>Git &amp; Version Control</li>
-          </ul>
+      </header>
+      <div class="case-body">
+        <aside class="reveal" aria-label="Technologies and equipment">
+          <p class="label" style="margin-bottom:.8rem">Technology</p>
+          <ul><li class="chip">Tridium Niagara 4</li><li class="chip">JACE controller</li><li class="chip">BACnet/IP</li><li class="chip">HTML · CSS · JavaScript</li><li class="chip">10 × Windows PoE touchscreens</li></ul>
+        </aside>
+        <div class="case-cols reveal">
+          <section><h4>Overview</h4><p>The glasshouse is made up of ten research greenhouses. Each one needs climate conditions and irrigation that staff can see and adjust quickly, from screens on the floor rather than an engineering workstation.</p></section>
+          <section><h4>Objectives</h4><ul><li>Show temperature, humidity and CO₂ for every greenhouse at a glance.</li><li>Give operators control of HVAC and irrigation schedules from touchscreens.</li><li>Run reliably on the ten deployed Windows PoE displays.</li></ul></section>
+          <section><h4>My role</h4><ul><li>Developed the custom BMS user interface.</li><li>Designed the HVAC monitoring and control graphics.</li><li>Implemented the interface for ten Windows PoE touchscreen displays.</li><li>Worked within the Niagara 4 environment.</li><li>Prepared and refined the software for the deployment environment.</li><li>Supported interface testing, troubleshooting and final handover.</li></ul></section>
+          <section><h4>Implementation</h4><p>The interface is a touch-first web application that reads and writes points on the Niagara station. It provides a <strong>greenhouse overview</strong> with live readings and short trends, a <strong>control view</strong> for each unit, <strong>irrigation scheduling</strong> for ten valve schedules with start and stop times, and <strong>system settings</strong> for user roles, notification thresholds and device configuration, behind a sign-in screen.</p></section>
+          <section class="wide"><h4>Challenges &amp; problem-solving</h4>
+            <div class="challenge"><p><b>Challenge</b>Point names in the station did not always match the documentation, which made the irrigation schedules hard to bind correctly.</p><p><b>Approach</b>Confirmed the exact slot names on site against the Workbench configuration, then bound each of the ten valve schedules to its verified point.</p></div>
+            <div class="challenge"><p><b>Challenge</b>The touchscreens are used standing, at a distance, often during other work.</p><p><b>Approach</b>Large controls, high-contrast readings and one clear action per button, sized for touch rather than a mouse.</p></div>
+            <div class="challenge"><p><b>Challenge</b>Operators must never mistake an unanswered request for a real value.</p><p><b>Approach</b>Every value shows a clear "Reading…" state until the controller responds, instead of a blank or a stale number.</p></div>
+          </section>
+          <section class="wide"><h4>Outcome</h4><p class="outcome">The interface was deployed across the facility's ten touchscreen displays, and the project was handed over on 9 October 2026.</p>
+            <p class="scope-note"><strong>Scope:</strong> my responsibility was the software, meaning the BMS interface and its deployment. The hardware, electrical and infrastructure work on this project was carried out by other project participants.</p></section>
         </div>
       </div>
- 
-      <div class="tools-row">
-        <span class="eyebrow">Tools I Reach For</span>
-        <div class="tool-badges">
-          <span class="tool-badge">Windows &amp; Microsoft 365</span>
-          <span class="tool-badge">Git &amp; GitHub</span>
-          <span class="tool-badge">VS Code</span>
-          <span class="tool-badge">Figma &amp; Canva</span>
-          <span class="tool-badge">Firebase</span>
-          <span class="tool-badge">REST APIs</span>
+      <div class="gallery reveal" data-gallery="ARC Glasshouse">
+        <a class="g-item g-lg" href="assets/img/arc/greenhouses.webp"><img src="assets/img/arc/greenhouses.webp" width="1800" height="812" loading="lazy" alt="Greenhouse overview showing ten greenhouse cards with temperature, humidity and CO2 readings"><figcaption>Greenhouse overview: ten units with temperature, humidity, CO₂ and short trends</figcaption></a>
+        <a class="g-item g-tall" href="assets/img/arc/sign-in.webp"><img src="assets/img/arc/sign-in.webp" width="720" height="867" loading="lazy" alt="ARC Glasshouse sign-in screen"><figcaption>Secure sign-in (BACnet/IP · v2.0)</figcaption></a>
+        <a class="g-item" href="assets/img/arc/irrigation.webp"><img src="assets/img/arc/irrigation.webp" width="1800" height="805" loading="lazy" alt="Irrigation schedule cards for units 1 to 8 with start and stop times"><figcaption>Irrigation scheduling per valve, captured while reading the controller</figcaption></a>
+        <a class="g-item g-wide" href="assets/img/arc/settings.webp"><img src="assets/img/arc/settings.webp" width="1800" height="803" loading="lazy" alt="System settings page with profile, roles, thresholds and device configuration"><figcaption>System settings: roles, thresholds, irrigation and device configuration</figcaption></a>
+        <p class="gallery-note mono">Screenshots taken during development and testing. Some values are test data, and personal details are blurred.</p>
+      </div>
+    </article>
+
+    <!-- ===== MIDDELBURG ===== -->
+    <article class="case" id="middelburg">
+      <header class="case-head reveal">
+        <p class="case-index">02</p>
+        <div>
+          <p class="label">Building Management System · Software · Infrastructure</p>
+          <h3>Department of Health, Middelburg: pharmaceutical facility BMS</h3>
+          <p class="summary">A live monitoring and control dashboard for a pharmaceutical warehouse. It covers 16 HVAC units, 6 room sensors and 6 fire dampers connected through a Tridium JACE, running 24/7 on site and reachable securely from off site.</p>
+          <dl class="case-meta">
+            <div><dt>Client</dt><dd>Department of Health</dd></div>
+            <div><dt>Delivered with</dt><dd>Spartcon Technologies</dd></div>
+            <div><dt>My role</dt><dd>Software, infrastructure, handover</dd></div>
+            <div><dt>Handover</dt><dd>11 November 2026</dd></div>
+          </dl>
         </div>
+      </header>
+      <div class="case-body">
+        <aside class="reveal" aria-label="Technologies and equipment">
+          <p class="label" style="margin-bottom:.8rem">Technology</p>
+          <ul><li class="chip">Tridium Niagara 4</li><li class="chip">JACE controller</li><li class="chip">BACnet · Modbus TCP</li><li class="chip">Node.js</li><li class="chip">JavaScript · HTML · CSS</li><li class="chip">Windows host PC</li><li class="chip">TP-Link Omada</li><li class="chip">Tailscale</li></ul>
+        </aside>
+        <div class="case-cols reveal">
+          <section><h4>Overview</h4><p>Medicine storage depends on stable temperature and humidity. The facility has 5 rooftop units, 11 hybrid units, 6 room sensors and 6 fire dampers. Staff needed one clear place to see conditions, act on alarms and adjust the rooftop units, without opening engineering tools.</p></section>
+          <section><h4>Objectives</h4><ul><li>Live visibility of every unit, zone and sensor.</li><li>Safe start/stop and setpoint control for the rooftop units.</li><li>Clear alarms, including dirty-filter warnings.</li><li>Recorded history that can be exported for reporting.</li><li>Access on site and securely from off site.</li></ul></section>
+          <section><h4>My role</h4><ul><li>Designed and built the dashboard and its Node.js gateway.</li><li>Worked with the controls integrator on point mapping and commissioning.</li><li>Set up the site host PC to run the system 24/7 and start automatically.</li><li>Configured connectivity and secure remote access.</li><li>Wrote the operator user guide and cabinet signage, and trained staff at handover.</li></ul></section>
+          <section><h4>Implementation</h4><p>A small gateway on the host PC holds the controller credentials, so browsers never see them. Only an approved list of points can be written to. Every command needs confirmation and is <strong>verified by reading the value back</strong> from the controller. A shared cache and command queue protect the JACE from multiple viewers, and every point is logged every five minutes for trends and CSV export.</p></section>
+          <section class="wide"><h4>Challenges &amp; problem-solving</h4>
+            <div class="challenge"><p><b>Challenge</b>The rooftop units would not switch between heating and cooling automatically. Leftover high-priority commands in the controller's priority array were overriding the automatic changeover.</p><p><b>Approach</b>Traced the fault to the priority array, made heating/cooling read-only in the dashboard, and documented how the integrator should release the overrides.</p></div>
+            <div class="challenge"><p><b>Challenge</b>During commissioning some points were not yet mapped, and others used different names on site, including the fire damper points.</p><p><b>Approach</b>Wrote diagnostic scripts that probe the controller for each expected point, then corrected the mapping on site with the integrator.</p></div>
+            <div class="challenge"><p><b>Challenge</b>The site has no public IP address, but the client wanted to monitor it remotely.</p><p><b>Approach</b>Set up an encrypted private network (Tailscale) to the host PC, and wrote a step-by-step access guide for client staff.</p></div>
+            <div class="challenge"><p><b>Challenge</b>Values from a lost connection could be mistaken for live data.</p><p><b>Approach</b>Every reading shows its state (LIVE, STALE or OFFLINE), and controls lock while the connection is down.</p></div>
+          </section>
+          <section class="wide"><h4>Outcome</h4><p class="outcome">The system was handed over to the Department of Health on 11 November 2026, with staff trained using a 10-page illustrated user guide. It runs continuously on site and records every reading for later export.</p></section>
+        </div>
+      </div>
+      <div class="gallery reveal" data-gallery="Middelburg BMS">
+        <a class="g-item g-lg" href="assets/img/middelburg/units-top.webp"><img src="assets/img/middelburg/units-top.webp" width="1800" height="1125" loading="lazy" alt="Units page of the Middelburg dashboard with summary tiles and hybrid unit cards"><figcaption>Units page: site summary and a live card for every HVAC unit</figcaption></a>
+        <a class="g-item" href="assets/img/middelburg/model.webp"><img src="assets/img/middelburg/model.webp" width="1800" height="1125" loading="lazy" alt="3D model of the warehouse with units and zones coloured by status"><figcaption>3D model: zones and units coloured by status</figcaption></a>
+        <a class="g-item" href="assets/img/middelburg/trends.webp"><img src="assets/img/middelburg/trends.webp" width="1800" height="1125" loading="lazy" alt="Trends page with 24 hour temperature and humidity charts"><figcaption>Trends: 24-hour history with period summary and MKT</figcaption></a>
+        <a class="g-item g-md" href="assets/img/middelburg/setpoint-dialog.webp"><img src="assets/img/middelburg/setpoint-dialog.webp" width="1800" height="1125" loading="lazy" alt="Confirmation dialog for a setpoint change from 22 to 23 degrees"><figcaption>Every command is confirmed, then verified against the controller</figcaption></a>
+        <a class="g-item g-md" href="assets/img/middelburg/overview.webp"><img src="assets/img/middelburg/overview.webp" width="1800" height="1125" loading="lazy" alt="Overview page with environmental assurance figures"><figcaption>Overview: environmental assurance at a glance</figcaption></a>
+        <a class="g-item" href="assets/img/middelburg/alarms.webp"><img src="assets/img/middelburg/alarms.webp" width="1800" height="1125" loading="lazy" alt="Alarm register listing an active dirty filter alarm"><figcaption>Alarm register for the whole site</figcaption></a>
+        <a class="g-item" href="assets/img/middelburg/dampers.webp"><img src="assets/img/middelburg/dampers.webp" width="1800" height="459" loading="lazy" alt="Fire damper status cards showing open state"><figcaption>Fire damper status (monitoring only)</figcaption></a>
+        <a class="g-item" href="assets/img/middelburg/commissioning.webp"><img src="assets/img/middelburg/commissioning.webp" width="1800" height="1012" loading="lazy" alt="Laptop and monitor running connectivity tests next to an Omada router box"><figcaption>Commissioning: connectivity testing during the network setup</figcaption></a>
+        <p class="gallery-note mono">Dashboard screenshots taken in a test environment with sample values. Network addresses are not shown.</p>
+      </div>
+    </article>
+
+    <!-- ===== CAPTURE ===== -->
+    <article class="case" id="spartcon-capture">
+      <header class="case-head reveal">
+        <p class="case-index">03</p>
+        <div>
+          <p class="label">Business software · Internal application</p>
+          <h3>Spartcon Capture: document processing system</h3>
+          <p class="summary">An internal web application that turns supplier invoices and receipts, whether PDFs, scans or phone photos, into checked, structured records, with a full audit trail.</p>
+          <dl class="case-meta">
+            <div><dt>Organisation</dt><dd>Spartcon Technologies</dd></div>
+            <div><dt>Type</dt><dd>Internal web application</dd></div>
+            <div><dt>My role</dt><dd>Design &amp; development</dd></div>
+            <div><dt>Year</dt><dd>2026</dd></div>
+          </dl>
+        </div>
+      </header>
+      <div class="case-body">
+        <aside class="reveal" aria-label="Technologies">
+          <p class="label" style="margin-bottom:.8rem">Technology</p>
+          <ul><li class="chip">Web application</li><li class="chip">PDF text extraction</li><li class="chip">OCR</li><li class="chip">Excel export</li><li class="chip">Role-based access</li><li class="chip">Audit logging</li></ul>
+        </aside>
+        <div class="case-cols reveal">
+          <section><h4>Overview</h4><p>Capturing invoice details by hand is slow and error-prone. Spartcon Capture reads each uploaded document and fills in the key fields. A person still checks the result before anything is confirmed.</p></section>
+          <section><h4>Objectives</h4><ul><li>Cut manual typing of supplier, date, VAT number, invoice number and totals.</li><li>Keep a person in control of every confirmed record.</li><li>Catch duplicate invoices before they are processed twice.</li><li>Record who did what, and when, in a tamper-evident log.</li></ul></section>
+          <section><h4>Implementation</h4><ul><li>Upload a PDF or photo. Text-based PDFs are read directly, while scans and photos go through OCR.</li><li>A review screen shows the original document beside the extracted fields. Each field is marked <strong>Found</strong> or <strong>Please check</strong>.</li><li>A duplicate warning appears for matching supplier, invoice number and date.</li><li>Confirmed documents produce an Excel file, and invoices move from <em>Ready to check</em> to <em>Done</em>.</li><li>User administration and an append-only activity log with a <strong>log integrity check</strong>.</li></ul></section>
+          <section><h4>Challenges &amp; problem-solving</h4><p><strong>Extraction is never perfect.</strong> Instead of trusting it blindly, the interface highlights exactly which fields need a human check, and why. For example, an address taken from the lines under the supplier name is flagged for review.</p><p><strong>Accountability matters for finance data.</strong> Every sign-in, upload, extraction and confirmation is written to an append-only log, which can be verified for integrity.</p></section>
+          <section class="wide"><h4>Outcome</h4><p class="outcome">A complete invoice workflow, from upload and extraction through review, duplicate detection and export, with an audit trail at every step.</p></section>
+        </div>
+      </div>
+      <div class="gallery reveal" data-gallery="Spartcon Capture">
+        <a class="g-item g-lg" href="assets/img/capture/review.webp"><img src="assets/img/capture/review.webp" width="1800" height="1125" loading="lazy" alt="Invoice review screen with original document beside extracted fields and a duplicate warning"><figcaption>Review: original document beside the extracted fields, with a duplicate warning</figcaption></a>
+        <a class="g-item" href="assets/img/capture/invoices.webp"><img src="assets/img/capture/invoices.webp" width="1800" height="1125" loading="lazy" alt="All invoices list with status and totals"><figcaption>All invoices, with status filter</figcaption></a>
+        <a class="g-item" href="assets/img/capture/activity-log.webp"><img src="assets/img/capture/activity-log.webp" width="1800" height="1125" loading="lazy" alt="Activity log with filters and integrity verification"><figcaption>Append-only activity log with integrity verification</figcaption></a>
+        <p class="gallery-note mono">Shown with fictional sample documents and a demo account.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== ADDITIONAL ========== -->
+<section class="section" id="more-projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="label">04 / More work</p>
+      <div><h2>Additional Software &amp; Web Projects</h2><p class="lede">Other business applications, plus earlier web projects that built the foundation for my current work.</p></div>
+    </div>
+    <article class="feature-sub reveal">
+      <div>
+        <p class="label">Business application · Spartcon</p>
+        <h3>Spartcon Timesheet</h3>
+        <p>A time and attendance app for site and office staff. Clocking in uses the server clock and a location check against the selected worksite.</p>
+        <ul>
+          <li>Clock in and out per site, within 100 m of the worksite.</li>
+          <li>Weekly totals, approvals and reports for team leads.</li>
+          <li>History by date range and status, with CSV export.</li>
+          <li>Administration of employees, sites, the location log and the audit log.</li>
+        </ul>
+      </div>
+      <div class="gallery" data-gallery="Spartcon Timesheet">
+        <a class="g-item" href="assets/img/timesheet/dashboard.webp"><img src="assets/img/timesheet/dashboard.webp" width="1800" height="798" loading="lazy" alt="Timesheet dashboard with clock-in panel and weekly totals"><figcaption>Dashboard: clock in against a worksite</figcaption></a>
+        <a class="g-item" href="assets/img/timesheet/history.webp"><img src="assets/img/timesheet/history.webp" width="1800" height="942" loading="lazy" alt="Timesheet history page with date filters and CSV export"><figcaption>History with filters and CSV export</figcaption></a>
+      </div>
+    </article>
+    <div class="web-grid">
+      <article class="web-card reveal">
+        <img src="assets/img/web/smartmailgen.webp" width="1200" height="750" loading="lazy" alt="SmartMailGen interface">
+        <h4>SmartMailGen</h4>
+        <p>Generates context-aware email replies by connecting a simple interface to the OpenAI API.</p>
+        <p class="stack mono">HTML · CSS · JavaScript · OpenAI API</p>
+        <p class="web-links"><a href="https://siphiwe-khumalo.github.io/Smart-Email-Generator/" target="_blank" rel="noopener">Live demo</a><a href="https://github.com/Siphiwe-Khumalo/Smart-Email-Generator" target="_blank" rel="noopener">Source</a></p>
+      </article>
+      <article class="web-card reveal">
+        <img src="assets/img/web/cineverse.webp" width="1200" height="721" loading="lazy" alt="CineVerse movie discovery interface">
+        <h4>CineVerse</h4>
+        <p>Movie discovery with live data fetching, filtering and recommendations from the TMDB API.</p>
+        <p class="stack mono">HTML · CSS · JavaScript · TMDB API</p>
+        <p class="web-links"><a href="https://siphiwe-khumalo.github.io/CineVerse.html/" target="_blank" rel="noopener">Live demo</a><a href="https://github.com/Siphiwe-Khumalo/CineVerse.html" target="_blank" rel="noopener">Source</a></p>
+      </article>
+      <article class="web-card reveal">
+        <img src="assets/img/web/ronnieai.webp" width="1200" height="726" loading="lazy" alt="RonnieAi FAQ assistant interface">
+        <h4>RonnieAi FAQ Assistant</h4>
+        <p>A conversational FAQ assistant that answers repetitive support questions.</p>
+        <p class="stack mono">HTML · CSS · JavaScript</p>
+        <p class="web-links"><a href="https://siphiwe-khumalo.github.io/not-so-Smart-Ai-FAQs-Assistant/" target="_blank" rel="noopener">Live demo</a><a href="https://github.com/Siphiwe-Khumalo/not-so-Smart-Ai-FAQs-Assistant" target="_blank" rel="noopener">Source</a></p>
+      </article>
+      <article class="web-card reveal">
+        <img src="assets/img/web/glowup.webp" width="1200" height="704" loading="lazy" alt="GlowUp Lamp landing page">
+        <h4>GlowUp Lamp landing page</h4>
+        <p>A product landing page with an interactive showcase and a deliberate conversion flow.</p>
+        <p class="stack mono">HTML · CSS · JavaScript</p>
+        <p class="web-links"><a href="https://siphiwe-khumalo.github.io/Glowup-Product-Landing-Page-/" target="_blank" rel="noopener">Live demo</a><a href="https://github.com/Siphiwe-Khumalo/Glowup-Product-Landing-Page-" target="_blank" rel="noopener">Source</a></p>
+      </article>
+      <article class="web-card reveal">
+        <img src="assets/img/web/quote-generator.webp" width="1200" height="594" loading="lazy" alt="Random quote generator interface">
+        <h4>Random Quote Generator</h4>
+        <p>A minimal quote app built to practise API calls, transitions and social sharing.</p>
+        <p class="stack mono">HTML · CSS · JavaScript · Quotes API</p>
+        <p class="web-links"><a href="https://siphiwe-khumalo.github.io/Random-Quote-Generator-/" target="_blank" rel="noopener">Live demo</a><a href="https://github.com/Siphiwe-Khumalo/Random-Quote-Generator-" target="_blank" rel="noopener">Source</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SKILLS ========== -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="label">05 / Skills</p>
+      <div><h2>Technical skills</h2><p class="lede">Grouped by discipline. Each item is something I have used on real work.</p></div>
+    </div>
+    <div class="skills">
+      <div class="skill reveal"><p class="label">01</p><h3>Building Automation</h3><ul><li>Tridium Niagara 4 and JACE controllers</li><li>BMS operator interfaces and graphics</li><li>HVAC monitoring and control</li><li>Points, priority arrays and overrides</li><li>Alarm and trend presentation</li></ul></div>
+      <div class="skill reveal"><p class="label">02</p><h3>Networking &amp; Infrastructure</h3><ul><li>Router configuration (TP-Link Omada)</li><li>LAN setup and connectivity testing</li><li>Secure remote access (Tailscale)</li><li>Site host PC deployment</li><li>CCTV and VoIP fundamentals</li></ul></div>
+      <div class="skill reveal"><p class="label">03</p><h3>IT Systems &amp; Cloud</h3><ul><li>Microsoft 365 administration and support</li><li>Windows setup and administration</li><li>Hardware installation and diagnostics</li><li>User support and documentation</li><li>Cybersecurity fundamentals</li></ul></div>
+      <div class="skill reveal"><p class="label">04</p><h3>Software Development</h3><ul><li>JavaScript, HTML and CSS</li><li>Node.js and REST APIs</li><li>React and Firebase</li><li>Progressive Web Apps</li><li>Git and GitHub</li></ul></div>
+      <div class="skill reveal"><p class="label">05</p><h3>Systems Integration</h3><ul><li>Web apps connected to building controllers</li><li>Read-back verified control commands</li><li>Data logging and CSV / Excel export</li><li>Document extraction and OCR workflows</li><li>Role-based access and audit trails</li></ul></div>
+      <div class="skill reveal"><p class="label">06</p><h3>Troubleshooting &amp; Deployment</h3><ul><li>On-site commissioning support</li><li>Fault-finding across network and controller</li><li>Diagnostic scripting</li><li>User guides and site signage</li><li>Operator training and handover</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CERTIFICATIONS ========== -->
+<section class="section" id="certifications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="label">06 / Certifications &amp; training</p>
+      <div><h2>Certifications &amp; training</h2></div>
+    </div>
+    <article class="cert reveal">
+      <div class="cert-main">
+        <p class="label">Tridium · Niagara 4</p>
+        <h3>Niagara 4 training course and examination</h3>
+        <p class="muted">A five-day course on the Tridium Niagara 4 framework, the platform behind the JACE controllers used on my BMS projects.</p>
+        <div class="cert-score"><strong>83%</strong><span class="mono muted">Examination result</span></div>
+        <dl class="cert-dl">
+          <dt>Training</dt><dd>26–30 October 2026 (five days)</dd>
+          <dt>Examination</dt><dd>Passed, 30 October 2026</dd>
+          <dt>Certificate</dt><dd><span class="status">Pending issue</span></dd>
+        </dl>
+      </div>
+      <div class="cert-slot">
+        <div><p class="label">Certificate</p><p>The official certificate will be shown here once it has been issued.</p></div>
+      </div>
+    </article>
+    <div class="edu reveal">
+      <p class="label">Additional education</p>
+      <div>
+        <div class="edu-item"><div><h4>Tourism studies</h4><p>Studies in Tourism. They shaped how I think about technology from the user's side.</p></div></div>
       </div>
     </div>
-  </section>
- 
-  <!-- ================= PROJECTS ================= -->
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Real Work</span>
-        <h2>Projects &amp; Problems I've Worked Through</h2>
-        <p class="lede">A handful of the things I've actually built — mostly self-directed, all used as a chance to learn something specific.</p>
-      </div>
- 
-      <div class="projects-list">
- 
-        <div class="project-row">
-          <div class="project-image"><img src="smart.jpg" alt="SmartMailGen preview" /></div>
-          <div class="project-info">
-            <h3>SmartMailGen</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>Writing a clear, professional email from scratch takes longer than it should when you're short on time.</dd>
-              <dt>What I built</dt>
-              <dd>A tool that generates context-aware email responses by connecting a simple interface to the OpenAI API.</dd>
-              <dt>What I learned</dt>
-              <dd>How to design a prompt and interface together so the output stays consistently usable, not just occasionally good.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript · OpenAI API</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/Smart-Email-Generator/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/Smart-Email-Generator" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-        <div class="project-row">
-          <div class="project-image"><img src="glowup.jpg" alt="GlowUp Lamp landing page preview" /></div>
-          <div class="project-info">
-            <h3>GlowUp Lamp Landing Page</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>A product page needs to build enough trust and interest in a few seconds to actually convert a visitor.</dd>
-              <dt>What I built</dt>
-              <dd>An e-commerce landing page for a smart lighting product, with an interactive product showcase and a deliberate conversion flow.</dd>
-              <dt>What I learned</dt>
-              <dd>Where animation actually helps a purchase decision, and where it just gets in the way.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/Glowup-Product-Landing-Page-/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/Glowup-Product-Landing-Page-" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-        <div class="project-row">
-          <div class="project-image"><img src="verse.jpg" alt="CineVerse preview" /></div>
-          <div class="project-info">
-            <h3>CineVerse</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>Wanted hands-on practice pulling and filtering real, live data rather than static content.</dd>
-              <dt>What I built</dt>
-              <dd>A movie discovery platform with real-time data fetching, advanced filtering, and recommendations built on the TMDB API.</dd>
-              <dt>What I learned</dt>
-              <dd>How to structure an app around an external API's quirks and limits without the whole thing becoming fragile.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript · TMDB API</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/CineVerse.html/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/CineVerse.html" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-        <div class="project-row">
-          <div class="project-image"><img src="qoute.jpg" alt="Random Quote Generator preview" /></div>
-          <div class="project-info">
-            <h3>Random Quote Generator</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>A small, self-contained project to practice API calls and clean, minimal UI in one sitting.</dd>
-              <dt>What I built</dt>
-              <dd>A minimalist app that delivers quotes with smooth transitions and social sharing built in.</dd>
-              <dt>What I learned</dt>
-              <dd>How much restraint improves a simple interface once the core interaction actually works.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript · Quotes API</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/Random-Quote-Generator-/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/Random-Quote-Generator-" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-        <div class="project-row">
-          <div class="project-image"><img src="ronnie.jpg" alt="RonnieAi FAQs Assistant preview" /></div>
-          <div class="project-info">
-            <h3>RonnieAi FAQs Assistant</h3>
-            <dl class="story">
-              <dt>The problem</dt>
-              <dd>Repetitive questions are a real support burden — worth automating even at a small scale.</dd>
-              <dt>What I built</dt>
-              <dd>An FAQ chatbot that answers common questions through a conversational interface instead of a static list.</dd>
-              <dt>What I learned</dt>
-              <dd>Where a scripted, rule-based assistant is genuinely more reliable than trying to make it "smarter" than it needs to be.</dd>
-            </dl>
-            <p class="tech-used">HTML · CSS · JavaScript · AI Integration</p>
-            <div class="project-links">
-              <a href="https://siphiwe-khumalo.github.io/not-so-Smart-Ai-FAQs-Assistant/" target="_blank" rel="noopener">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-              <a href="https://github.com/Siphiwe-Khumalo/not-so-Smart-Ai-FAQs-Assistant" target="_blank" rel="noopener">Source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></a>
-            </div>
-          </div>
-        </div>
- 
-      </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <p class="label">07 / Contact</p>
+      <h2>Let's talk about your system.</h2>
+      <p class="muted">I'm open to conversations about building automation, IT infrastructure and software projects, and to roles where those disciplines meet.</p>
     </div>
-  </section>
- 
-  <!-- ================= EXPERIENCE ================= -->
-  <section id="experience">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Background</span>
-        <h2>Experience &amp; Education</h2>
-        <p class="lede">A developing technology professional, not a finished one — this is the order things actually happened in.</p>
-      </div>
- 
-      <div class="timeline">
-        <div class="timeline-item">
-          <span class="tag">Current</span>
-          <h3>IT Support &amp; Technical Troubleshooting</h3>
-          <p>Working in a hands-on IT support capacity, handling day-to-day hardware, network, and systems issues — the practical, on-the-ground side of keeping technology running.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="tag">Ongoing</span>
-          <h3>Freelance Web Developer</h3>
-          <p>Developed custom web solutions for small businesses and startups, including promotional pages, interactive tools, and e-commerce platforms — delivering 15+ projects to date.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="tag">Throughout</span>
-          <h3>Core Competencies</h3>
-          <p>Creative problem-solving, client communication, and project management, with a consistent emphasis on responsive design, performance, and actually understanding the person using what I build.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="tag">Background</span>
-          <h3>Academic Background — Tourism</h3>
-          <p>Studies in Tourism, exploring the intersection of technology and digital storytelling — a reminder that most of what I build is ultimately for someone outside of tech.</p>
-        </div>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= CURRENTLY LEARNING ================= -->
-  <section id="learning">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">In Progress</span>
-        <h2>What I'm Learning Right Now</h2>
-      </div>
- 
-      <ul class="learning-list">
-        <li>
-          <span class="mark">→</span>
-          <div><span class="label">Networking &amp; Infrastructure</span><p class="note">Going deeper than day-to-day troubleshooting into how networks and infrastructure are actually designed.</p></div>
-        </li>
-        <li>
-          <span class="mark">→</span>
-          <div><span class="label">Cybersecurity Fundamentals</span><p class="note">Building a more deliberate understanding of the risks behind the systems I already support.</p></div>
-        </li>
-        <li>
-          <span class="mark">→</span>
-          <div><span class="label">Cloud Platforms</span><p class="note">Extending Microsoft 365 and cloud services knowledge beyond day-to-day administration.</p></div>
-        </li>
-        <li>
-          <span class="mark">→</span>
-          <div><span class="label">Advanced React &amp; WebGL</span><p class="note">Pushing the software side further — more advanced patterns and interactive, three-dimensional interfaces.</p></div>
-        </li>
-      </ul>
-    </div>
-  </section>
- 
-  <!-- ================= WHERE I'M HEADING ================= -->
-  <section id="heading">
-    <div class="wrap">
-      <div class="heading-copy">
-        <span class="eyebrow">Where I'm Heading</span>
-        <h2 style="margin-bottom:1.4rem;">Staying broad, on purpose</h2>
-        <p>I could narrow down to just IT support, or just development. I'm not in a hurry to do either. <strong>The version of my career I'm most interested in is one where the hardware, network, infrastructure, and software knowledge all keep informing each other</strong> — because in practice, that's how most real problems actually show up.</p>
-        <p>Longer term, that probably means growing into a role that sits across IT and technical systems more broadly, while keeping software and web development as a skill I keep sharp rather than one I set aside.</p>
-      </div>
-    </div>
-  </section>
- 
-  <!-- ================= CONNECT ================= -->
-  <section id="connect">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Let's Connect</span>
-        <h2>Find Me Online</h2>
-      </div>
-      <p class="connect-lead">Open to conversations about IT, infrastructure, or development work — or just to talk through a technical problem you're stuck on.</p>
- 
-      <ul class="social-list">
-        <li>
-          <a href="https://github.com/Siphiwe-Khumalo" target="_blank" rel="noopener">
-            GitHub
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/siphiwe-khumalo-97a0aa306/" target="_blank" rel="noopener">
-            LinkedIn
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://vm.tiktok.com/ZSHcW9qoNontj-JoXkq/" target="_blank" rel="noopener">
-            TikTok
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
- 
-  <!-- ================= CONTACT ================= -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Get In Touch</span>
-        <h2>Start a Conversation</h2>
-      </div>
- 
-      <form class="contact-form">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input id="name" type="text" placeholder="Ronnie Khumalo" required />
-        </div>
-        <div class="form-group">
-          <label for="email">Your Email</label>
-          <input id="email" type="email" placeholder="Ronnie@example.com" required />
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell me what you're working on..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-fill">Send Message</button>
-      </form>
-    </div>
-  </section>
- 
-  <footer>
-    <div class="footer-inner">
-      <p>&copy; 2026 Siphiwe Khumalo. All Rights Reserved.</p>
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#connect">Connect</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </footer>
- 
-  <script>
-    // Smooth scroll for in-page anchors
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-      anchor.addEventListener('click', function (e) {
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          var navLinks = document.getElementById('navLinks');
-          var navToggle = document.getElementById('navToggle');
-          if (navLinks.classList.contains('open')) {
-            navLinks.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-          }
-        }
-      });
-    });
- 
-    // Contact form (demo behaviour)
-    document.querySelector('.contact-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Message sent! (This is a demo - connect your actual form handler)');
-    });
- 
-    // Nav background on scroll
-    var nav = document.getElementById('siteNav');
-    var onScroll = function () {
-      if (window.scrollY > 40) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
- 
-    // Mobile nav toggle
-    var navToggle = document.getElementById('navToggle');
-    var navLinks = document.getElementById('navLinks');
-    navToggle.addEventListener('click', function () {
-      var isOpen = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  </script>
+    <ul class="contact-list reveal">
+      <li><div class="row"><span>Email</span><span class="placeholder">Email address to be added</span></div></li>
+      <li><a href="https://www.linkedin.com/in/siphiwe-khumalo-97a0aa306/" target="_blank" rel="noopener"><span>LinkedIn</span><small>Profile <svg aria-hidden="true"><use href="#i-arrow"/></svg></small></a></li>
+      <li><a href="https://github.com/Siphiwe-Khumalo" target="_blank" rel="noopener"><span>GitHub</span><small>Siphiwe-Khumalo <svg aria-hidden="true"><use href="#i-arrow"/></svg></small></a></li>
+      <li><a href="Siphiwe-Khumalo-Portfolio.pdf" download><span>PDF portfolio</span><small>Download <svg aria-hidden="true"><use href="#i-down"/></svg></small></a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap"><p>© 2026 Siphiwe Khumalo</p><p><a href="#main">Back to top ↑</a></p></div>
+</footer>
+
+<dialog class="lightbox" aria-label="Image viewer">
+  <div class="lb-top"><span class="mono lb-count"></span><button class="lb-btn" type="button" data-lb="close" aria-label="Close"><svg aria-hidden="true"><use href="#i-x"/></svg></button></div>
+  <div class="lb-stage"><img alt=""></div>
+  <div class="lb-bottom"><p class="lb-caption"></p><div class="lb-nav"><button class="lb-btn" type="button" data-lb="prev" aria-label="Previous image"><svg aria-hidden="true"><use href="#i-left"/></svg></button><button class="lb-btn" type="button" data-lb="next" aria-label="Next image"><svg aria-hidden="true"><use href="#i-right"/></svg></button></div></div>
+</dialog>
+
+<script src="js/site.js" defer></script>
 </body>
 </html>
- 
-
-
-
-
-
-
-
-
-
-
-
