@@ -32,9 +32,6 @@ https://siphiwe-khumalo.github.io/Portfolio-Website-/ within a minute or two.
 
 ## Common updates
 
-- **Public email:** in `index.html`, replace the `Email address to be added` row in the Contact section with
-  `<li><a href="mailto:you@example.com"><span>Email</span><small>you@example.com</small></a></li>`.
-  Do the same in `pdf/portfolio.html`, then rebuild the PDF.
 - **Tridium certificate:** add the image under `assets/img/certificates/`. Replace the `.cert-slot` block's
   text with an `<img>`, and change "Pending issue" to the issue date. Confirm the exact course title against
   the training documents.

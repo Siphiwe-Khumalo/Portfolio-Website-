@@ -214,7 +214,7 @@ p { max-width: 68ch; }
 .contact-list a, .contact-list .row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 0.2rem; text-decoration: none; font-family: var(--display); font-size: 1.15rem; font-weight: 500; transition: color .2s, padding-left .2s var(--ease); }
 .contact-list a:hover { color: var(--accent); padding-left: 0.6rem; }
 .contact-list small { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); font-weight: 400; }
-.contact-list .placeholder { color: var(--faint); font-style: italic; font-family: var(--body); font-size: 1rem; }
+.contact-list small.email { text-transform: none; letter-spacing: 0.02em; font-size: 0.82rem; color: var(--muted); }
 .contact-list svg { width: 16px; height: 16px; flex: none; }
 
 .site-footer { padding: 2rem 0 2.4rem; border-top: 1px solid var(--line); }
