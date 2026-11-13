@@ -199,7 +199,10 @@ p { max-width: 68ch; }
 .status { display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
 .status::before { content: ''; width: 7px; height: 7px; border: 1px solid var(--accent); border-radius: 50%; }
 .cert-slot { border-left: 1px solid var(--line-strong); display: grid; place-items: center; padding: 2rem; text-align: center; background: repeating-linear-gradient(135deg, transparent 0 10px, rgba(236,233,227,0.025) 10px 20px); }
-.cert-slot p { color: var(--faint); font-size: 0.86rem; max-width: 24ch; margin-top: 0.5rem; }
+.cert-slot { padding: clamp(1rem, 3vw, 1.6rem); background: var(--surface-2); }
+.cert-img { width: 100%; }
+.cert-img img { aspect-ratio: auto; object-fit: contain; background: #fff; }
+.cert-img figcaption { position: static; background: none; padding: 0.6rem 0 0; color: var(--muted); }
 .edu { margin-top: 2.6rem; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 2rem; }
 .edu-item { border-top: 1px solid var(--line); padding: 1.2rem 0; display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
 .edu-item h4 { font-size: 1.1rem; }
