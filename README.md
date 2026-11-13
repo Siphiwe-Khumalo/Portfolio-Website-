@@ -32,12 +32,6 @@ https://siphiwe-khumalo.github.io/Portfolio-Website-/ within a minute or two.
 
 ## Common updates
 
-- **Public email:** in `index.html`, replace the `Email address to be added` row in the Contact section with
-  `<li><a href="mailto:you@example.com"><span>Email</span><small>you@example.com</small></a></li>`.
-  Do the same in `pdf/portfolio.html`, then rebuild the PDF.
-- **Tridium certificate:** add the image under `assets/img/certificates/`. Replace the `.cert-slot` block's
-  text with an `<img>`, and change "Pending issue" to the issue date. Confirm the exact course title against
-  the training documents.
 - **New images:** export as WebP at most 1800 px wide, put them in the project's folder, and add an
   `<a class="g-item" href="…"><img src="…" width="…" height="…" loading="lazy" alt="…"><figcaption>…</figcaption></a>`.
   Add `g-lg` (large), `g-md` (half) or `g-wide` (full width) to change the size in the grid.
