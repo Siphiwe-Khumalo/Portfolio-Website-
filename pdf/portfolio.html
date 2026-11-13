@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<title>Siphiwe Khumalo · Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --ink: #1c1d1f; --muted: #55534e; --faint: #85827a; --paper: #f5f3ef; --line: #dcd8d0; --accent: #b4691a; --graphite: #161718; --soft: #ece9e3; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Manrope', Arial, sans-serif; color: var(--ink); font-size: 9.6pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: var(--paper); page-break-after: always; display: flex; flex-direction: column; padding: 16mm 16mm 0; }
+  .page:last-child { page-break-after: auto; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', Arial, sans-serif; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+  h2 { font-size: 24pt; margin-bottom: 4mm; }
+  h3 { font-size: 13pt; margin-bottom: 2mm; }
+  .label { font-family: 'JetBrains Mono', monospace; font-size: 7pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 7pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); }
+  p { color: var(--muted); }
+  p + p { margin-top: 2.2mm; }
+  strong { color: var(--ink); font-weight: 600; }
+  .run { display: flex; justify-content: space-between; border-bottom: 0.3mm solid var(--line); padding-bottom: 3mm; margin-bottom: 8mm; }
+  .foot { margin-top: auto; display: flex; justify-content: space-between; border-top: 0.3mm solid var(--line); padding: 3.5mm 0 8mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm 9mm; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm 7mm; }
+  .sec h4 { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 7pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border-bottom: 0.3mm solid var(--line); padding-bottom: 1.6mm; margin-bottom: 2.4mm; }
+  ul.dash li { list-style: none; padding-left: 3.6mm; position: relative; color: var(--muted); margin-bottom: 1.3mm; }
+  ul.dash li::before { content: ''; position: absolute; left: 0; top: 2.4mm; width: 2mm; height: 0.3mm; background: var(--accent); }
+  .shot { border: 0.3mm solid var(--line); background: #fff; overflow: hidden; }
+  .shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  figure figcaption { font-size: 7.6pt; color: var(--faint); margin-top: 1.5mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 1.5mm; }
+  .chip { font-family: 'JetBrains Mono', monospace; font-size: 6.6pt; border: 0.3mm solid #c9c4ba; padding: 0.8mm 1.8mm; color: var(--muted); }
+  .meta { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 0.3mm solid var(--line); border-bottom: 0.3mm solid var(--line); margin: 5mm 0 6mm; }
+  .meta div { padding: 2.4mm 3mm 2.4mm 0; }
+  .meta div + div { padding-left: 3mm; border-left: 0.3mm solid var(--line); }
+  .meta dt { font-family: 'JetBrains Mono', monospace; font-size: 6.4pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .meta dd { font-weight: 600; font-size: 9pt; margin-top: 0.6mm; }
+  .case-top { display: grid; grid-template-columns: 24mm 1fr; gap: 4mm; }
+  .idx { font-family: 'Space Grotesk'; font-size: 34pt; font-weight: 500; color: var(--accent); line-height: 0.9; letter-spacing: -0.04em; }
+  .case-top h2 { font-size: 21pt; margin: 2mm 0 3mm; }
+  .lead { font-size: 10.6pt; color: var(--muted); }
+  .note { border-left: 0.8mm solid var(--accent); background: #f1e6d6; padding: 2.6mm 3.5mm; color: var(--ink); font-size: 8.8pt; }
+  .ch { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; padding: 2.6mm 0; border-bottom: 0.3mm dashed var(--line); }
+  .ch:last-child { border-bottom: 0; }
+  .ch p { font-size: 9pt; margin: 0; }
+  .ch b { display: block; font-family: 'JetBrains Mono', monospace; font-size: 6.4pt; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.8mm; }
+  .outcome { font-family: 'Space Grotesk'; font-size: 12pt; line-height: 1.35; color: var(--ink); font-weight: 500; }
+  .scope { font-size: 7.4pt; color: var(--faint); }
+  /* cover */
+  .cover { background: var(--graphite); color: var(--soft); padding: 0; }
+  .cover .photo { position: absolute; top: 0; right: 0; width: 92mm; height: 297mm; }
+  .cover .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; filter: saturate(0.85); }
+  .cover .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--graphite) 0%, rgba(22,23,24,0.15) 30%, rgba(22,23,24,0) 60%); }
+  .cover .txt { position: relative; z-index: 2; width: 122mm; padding: 18mm 0 0 16mm; height: 297mm; display: flex; flex-direction: column; }
+  .cover .mark { width: 11mm; height: 11mm; border: 0.4mm solid #d9913f; color: #d9913f; display: grid; place-items: center; font-family: 'Space Grotesk'; font-weight: 700; font-size: 10pt; }
+  .cover .label { color: #d9913f; }
+  .cover h1 { font-size: 50pt; letter-spacing: -0.045em; line-height: 0.92; margin: 6mm 0 7mm; }
+  .cover h1 span { display: block; color: #d9913f; }
+  .cover .statement { font-family: 'Space Grotesk'; font-size: 15pt; line-height: 1.3; font-weight: 500; color: var(--soft); max-width: 100mm; }
+  .cover .intro { color: #a29f97; margin-top: 5mm; font-size: 10pt; max-width: 104mm; }
+  .cover .facts { margin-top: auto; border-top: 0.3mm solid rgba(236,233,227,0.2); display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; padding: 5mm 0 4mm; }
+  .cover .facts strong { display: block; color: var(--soft); font-family: 'Space Grotesk'; font-size: 11pt; }
+  .cover .facts span { font-family: 'JetBrains Mono'; font-size: 6.4pt; letter-spacing: 0.06em; text-transform: uppercase; color: #8a877f; }
+  .cover .bottom { border-top: 0.3mm solid rgba(236,233,227,0.2); padding: 4mm 0 12mm; display: flex; justify-content: space-between; color: #8a877f; }
+  .role { display: grid; grid-template-columns: 38mm 1fr; gap: 6mm; padding: 5mm 0; border-top: 0.3mm solid var(--line); }
+  .role h3 { font-size: 14pt; margin-bottom: 0.5mm; }
+  .skills .sk { border-top: 0.4mm solid var(--ink); padding-top: 3mm; }
+  .skills .sk h3 { font-size: 12pt; margin: 1.4mm 0 2.6mm; }
+  .skills li { list-style: none; color: var(--muted); padding: 1.6mm 0; border-top: 0.3mm dashed var(--line); font-size: 9pt; }
+  .web { display: grid; grid-template-columns: 34mm 1fr; gap: 4mm; padding: 3mm 0; border-top: 0.3mm solid var(--line); align-items: start; }
+  .web .shot { height: 21mm; }
+  .web h4 { font-size: 10.5pt; margin-bottom: 0.8mm; }
+  .web p { font-size: 8.6pt; }
+  .web a { color: var(--accent); text-decoration: none; font-family: 'JetBrains Mono'; font-size: 6.8pt; }
+  .cert { border: 0.4mm solid var(--ink); display: grid; grid-template-columns: 1.3fr 0.7fr; }
+  .cert .m { padding: 7mm; }
+  .cert .score { font-family: 'Space Grotesk'; font-size: 44pt; color: var(--accent); font-weight: 500; line-height: 0.9; letter-spacing: -0.04em; margin: 5mm 0 4mm; }
+  .cert dl { display: grid; grid-template-columns: max-content 1fr; gap: 1.6mm 5mm; font-size: 9pt; }
+  .cert dt { font-family: 'JetBrains Mono'; font-size: 6.6pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); padding-top: 0.5mm; }
+  .cert .slot { border-left: 0.3mm solid var(--line); display: grid; place-items: center; text-align: center; padding: 6mm; background: repeating-linear-gradient(135deg, transparent 0 3mm, rgba(0,0,0,0.035) 3mm 6mm); }
+  .contact { background: var(--graphite); color: var(--soft); margin: 10mm -16mm 0; padding: 12mm 16mm; flex: 1; display: flex; flex-direction: column; }
+  .contact h2 { font-size: 30pt; letter-spacing: -0.035em; max-width: 130mm; margin: 4mm 0 4mm; }
+  .contact p { color: #a29f97; max-width: 120mm; }
+  .contact ul { margin-top: 8mm; }
+  .contact li { list-style: none; display: flex; justify-content: space-between; padding: 3.4mm 0; border-top: 0.3mm solid rgba(236,233,227,0.18); font-family: 'Space Grotesk'; font-size: 12pt; }
+  .contact li:last-child { border-bottom: 0.3mm solid rgba(236,233,227,0.18); }
+  .contact li span:last-child { font-family: 'Manrope'; font-size: 9.4pt; color: #a29f97; }
+  .contact li a { color: #d9913f; text-decoration: none; }
+  .contact .ph { font-style: italic; color: #8a877f !important; }
+  .contact .label { color: #d9913f; }
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="page cover">
+  <div class="photo"><img src="img/profile/on-site.jpg" alt=""></div>
+  <div class="txt">
+    <div class="mark">SK</div>
+    <p class="label" style="margin-top:22mm">Portfolio · 2026</p>
+    <h1>Siphiwe<span>Khumalo</span></h1>
+    <p class="statement">Building automation, IT infrastructure and software, treated as one system.</p>
+    <p class="intro">IT Administrator at Spartcon Technologies. I develop building management interfaces on Tridium Niagara 4, set up the infrastructure and remote access behind them, and build internal business software.</p>
+    <div class="facts">
+      <div><strong>2 BMS deployments</strong><span>ARC Glasshouse · DoH Middelburg</span></div>
+      <div><strong>Niagara 4</strong><span>Tridium exam · 83%</span></div>
+      <div><strong>3 disciplines</strong><span>Automation · IT · Software</span></div>
+    </div>
+    <div class="bottom mono"><span>siphiwe-khumalo.github.io/Portfolio-Website-</span><span>Nov 2026</span></div>
+  </div>
+</section>
+
+<!-- 2 PROFILE -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Profile</span></div>
+  <p class="label">01 / Profile</p>
+  <h2 style="max-width:150mm">I like knowing what is actually happening underneath a system, and then making it dependable.</h2>
+  <div style="display:grid;grid-template-columns:1.25fr 0.75fr;gap:9mm;margin-top:4mm">
+    <div>
+      <p>I'm <strong>Siphiwe Khumalo</strong>, known to most people as Ronnie. I started in freelance web development and hands-on IT support. That mix taught me that problems rarely stay in one layer: a "broken dashboard" can be a network route, a controller setting or a single point name.</p>
+      <p>Since joining <strong>Spartcon Technologies</strong> as IT Administrator in August 2026, I have worked on live building automation projects. I developed the operator interfaces for the ARC Glasshouse and Department of Health (Middelburg) BMS deployments, set up the site infrastructure and remote access behind them, and built internal business applications for the team.</p>
+      <p>I'm still early in my career, and I treat each deployment as a chance to deepen my engineering knowledge. In October 2026 I completed Tridium's five-day Niagara training and passed the exam with 83%.</p>
+    </div>
+    <figure><div class="shot" style="height:62mm"><img src="img/profile/portrait.jpg" alt="" style="object-position:center"></div><figcaption>Siphiwe "Ronnie" Khumalo</figcaption></figure>
+  </div>
+  <div class="grid3" style="margin-top:12mm">
+    <div class="sec"><h4>Approach 01</h4><h3>Start where the fault really is</h3><p>Trace a problem through hardware, network, controller and software before deciding what to change.</p></div>
+    <div class="sec"><h4>Approach 02</h4><h3>Make the safe action the easy one</h3><p>Confirm every command, verify it against the controller, and never present old data as live.</p></div>
+    <div class="sec"><h4>Approach 03</h4><h3>Hand over something people can run</h3><p>Clear interfaces, written guides and on-site training, so the system keeps working after I leave.</p></div>
+  </div>
+  <div class="sec" style="margin-top:12mm"><h4>At a glance</h4>
+    <div class="grid3">
+      <div><p class="mono">Role</p><p><strong>IT Administrator</strong>, Spartcon Technologies, since August 2026</p></div>
+      <div><p class="mono">Focus</p><p>Building automation · IT infrastructure · Software development</p></div>
+      <div><p class="mono">Milestones</p><p>ARC handover 9 Oct 2026 · Tridium exam 30 Oct 2026 · Middelburg handover 11 Nov 2026</p></div>
+    </div>
+  </div>
+  <div class="foot mono"><span>Spartcon Technologies</span><span>02</span></div>
+</section>
+
+<!-- 3 EXPERIENCE -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Experience</span></div>
+  <p class="label">02 / Experience</p>
+  <h2>Professional experience</h2>
+  <div class="role">
+    <div><p class="label">Aug 2026 – Present</p><p class="mono" style="margin-top:1mm">Full time</p></div>
+    <div>
+      <h3>IT Administrator</h3><p style="margin-bottom:4mm">Spartcon Technologies</p>
+      <ul class="dash">
+        <li><strong>Building automation.</strong> Developed the operator interfaces for BMS deployments at ARC Glasshouse and the Department of Health facility in Middelburg, working with Tridium Niagara 4 and JACE controllers.</li>
+        <li><strong>IT infrastructure.</strong> Set up and maintained the site host PC that runs the Middelburg dashboard around the clock, including start-up automation and data backup.</li>
+        <li><strong>Networking and connectivity.</strong> Configured site connectivity and secure remote access so the client can monitor the facility from off site.</li>
+        <li><strong>Technical troubleshooting.</strong> Diagnosed communication, point-mapping and control issues during commissioning, together with the controls integrator.</li>
+        <li><strong>Software solutions.</strong> Designed and built internal applications for Spartcon, including Spartcon Capture (invoice processing) and Spartcon Timesheet.</li>
+        <li><strong>Deployment and handover.</strong> Produced user guides and signage, trained client staff on site and supported formal project handover.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="role">
+    <div><p class="label">Before Aug 2026</p><p class="mono" style="margin-top:1mm">Freelance</p></div>
+    <div>
+      <h3>Web Developer &amp; IT Support</h3><p style="margin-bottom:4mm">Independent</p>
+      <ul class="dash">
+        <li><strong>Web development.</strong> Built websites, landing pages and interactive tools for small businesses and personal projects, using HTML, CSS, JavaScript and third-party APIs.</li>
+        <li><strong>IT support.</strong> Hands-on hardware, network and systems troubleshooting, including Microsoft 365 and general user support.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:8mm"><h4>2026 milestones</h4>
+    <div class="grid3">
+      <div><p class="idx" style="font-size:20pt">01 Aug</p><p>Joined Spartcon Technologies as IT Administrator.</p></div>
+      <div><p class="idx" style="font-size:20pt">09 Oct</p><p>ARC Glasshouse BMS handed over.</p></div>
+      <div><p class="idx" style="font-size:20pt">30 Oct</p><p>Passed the Tridium Niagara 4 exam with 83%.</p></div>
+      <div><p class="idx" style="font-size:20pt">11 Nov</p><p>Department of Health Middelburg BMS handed over, staff trained.</p></div>
+    </div>
+  </div>
+  <div class="foot mono"><span>Spartcon Technologies</span><span>03</span></div>
+</section>
+
+<!-- 4 ARC A -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Case study 01</span></div>
+  <div class="case-top"><p class="idx">01</p><div>
+    <p class="label">Building Management System · Software</p>
+    <h2>ARC Glasshouse: greenhouse BMS interface</h2>
+    <p class="lead">A custom operator interface for the Agricultural Research Council's glasshouse facility. It monitors and controls ten greenhouses from wall-mounted touchscreens, running on a Tridium Niagara 4 controls platform.</p>
+  </div></div>
+  <dl class="meta"><div><dt>Client</dt><dd>ARC Glasshouse</dd></div><div><dt>Delivered with</dt><dd>Spartcon Technologies</dd></div><div><dt>My role</dt><dd>BMS interface software</dd></div><div><dt>Handover</dt><dd>9 October 2026</dd></div></dl>
+  <figure><div class="shot" style="height:72mm"><img src="img/arc/greenhouses.jpg" alt=""></div><figcaption>Greenhouse overview: ten units with temperature, humidity, CO₂ and short trends.</figcaption></figure>
+  <div class="grid2" style="margin-top:6mm">
+    <div class="sec"><h4>Overview</h4><p>The glasshouse is made up of ten research greenhouses. Each one needs climate conditions and irrigation that staff can see and adjust quickly, from screens on the floor rather than an engineering workstation.</p>
+      <h4 style="margin-top:5mm">Objectives</h4><ul class="dash"><li>Show temperature, humidity and CO₂ for every greenhouse at a glance.</li><li>Give operators control of HVAC and irrigation schedules from touchscreens.</li><li>Run reliably on the ten deployed Windows PoE displays.</li></ul></div>
+    <div class="sec"><h4>My role</h4><ul class="dash"><li>Developed the custom BMS user interface.</li><li>Designed the HVAC monitoring and control graphics.</li><li>Implemented the interface for ten Windows PoE touchscreen displays.</li><li>Worked within the Niagara 4 environment.</li><li>Prepared and refined the software for the deployment environment.</li><li>Supported interface testing, troubleshooting and final handover.</li></ul>
+      <h4 style="margin-top:5mm">Technology &amp; equipment</h4><div class="chips"><span class="chip">Tridium Niagara 4</span><span class="chip">JACE controller</span><span class="chip">BACnet/IP</span><span class="chip">HTML · CSS · JavaScript</span><span class="chip">10 × Windows PoE touchscreens</span></div></div>
+  </div>
+  <div class="foot mono"><span>Spartcon Technologies</span><span>04</span></div>
+</section>
+
+<!-- 5 ARC B -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Case study 01 · ARC Glasshouse</span></div>
+  <div class="sec"><h4>Implementation</h4><p>The interface is a touch-first web application that reads and writes points on the Niagara station. It provides a <strong>greenhouse overview</strong> with live readings and short trends, a <strong>control view</strong> for each unit, <strong>irrigation scheduling</strong> for ten valve schedules with start and stop times, and <strong>system settings</strong> for user roles, notification thresholds and device configuration, behind a sign-in screen.</p></div>
+  <div style="display:grid;grid-template-columns:0.62fr 1.38fr;gap:4mm;margin:6mm 0">
+    <figure><div class="shot" style="height:45mm"><img src="img/arc/sign-in.jpg" alt="" style="object-position:top center"></div><figcaption>Secure sign-in.</figcaption></figure>
+    <figure><div class="shot" style="height:45mm"><img src="img/arc/irrigation.jpg" alt=""></div><figcaption>Irrigation scheduling for each valve.</figcaption></figure>
+  </div>
+  <figure><div class="shot" style="height:36mm"><img src="img/arc/settings.jpg" alt=""></div><figcaption>System settings: roles, thresholds, irrigation and device configuration (personal details blurred).</figcaption></figure>
+  <div class="sec" style="margin-top:6mm"><h4>Challenges &amp; problem-solving</h4>
+    <div class="ch"><p><b>Challenge</b>Point names in the station did not always match the documentation, which made the irrigation schedules hard to bind correctly.</p><p><b>Approach</b>Confirmed the exact slot names on site against the Workbench configuration, then bound each of the ten valve schedules to its verified point.</p></div>
+    <div class="ch"><p><b>Challenge</b>The touchscreens are used standing, at a distance, often during other work.</p><p><b>Approach</b>Large controls, high-contrast readings and one clear action per button, sized for touch rather than a mouse.</p></div>
+    <div class="ch"><p><b>Challenge</b>Operators must never mistake an unanswered request for a real value.</p><p><b>Approach</b>Every value shows a clear "Reading…" state until the controller responds.</p></div>
+  </div>
+  <div class="sec" style="margin-top:4mm"><h4>Outcome</h4><p class="outcome">The interface was deployed across the facility's ten touchscreen displays, and the project was handed over on 9 October 2026.</p></div>
+  <p class="note" style="margin-top:4mm"><strong>Scope:</strong> my responsibility was the software, meaning the BMS interface and its deployment. The hardware, electrical and infrastructure work on this project was carried out by other project participants.</p>
+  <div class="foot mono"><span>Screenshots from development and testing. Some values are test data.</span><span>05</span></div>
+</section>
+
+<!-- 6 MIDDELBURG A -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Case study 02</span></div>
+  <div class="case-top"><p class="idx">02</p><div>
+    <p class="label">Building Management System · Software · Infrastructure</p>
+    <h2>Department of Health, Middelburg: pharmaceutical facility BMS</h2>
+    <p class="lead">A live monitoring and control dashboard for a pharmaceutical warehouse. It covers 16 HVAC units, 6 room sensors and 6 fire dampers connected through a Tridium JACE, running 24/7 on site and reachable securely from off site.</p>
+  </div></div>
+  <dl class="meta"><div><dt>Client</dt><dd>Department of Health</dd></div><div><dt>Delivered with</dt><dd>Spartcon Technologies</dd></div><div><dt>My role</dt><dd>Software, infrastructure, handover</dd></div><div><dt>Handover</dt><dd>11 November 2026</dd></div></dl>
+  <figure><div class="shot" style="height:73mm"><img src="img/middelburg/units-top.jpg" alt=""></div><figcaption>Units page: site summary and a live card for every HVAC unit.</figcaption></figure>
+  <div class="grid2" style="margin-top:6mm">
+    <div class="sec"><h4>Overview</h4><p>Medicine storage depends on stable temperature and humidity. The facility has 5 rooftop units, 11 hybrid units, 6 room sensors and 6 fire dampers. Staff needed one clear place to see conditions, act on alarms and adjust the rooftop units, without opening engineering tools.</p>
+      <h4 style="margin-top:5mm">Objectives</h4><ul class="dash"><li>Live visibility of every unit, zone and sensor.</li><li>Safe start/stop and setpoint control for the rooftop units.</li><li>Clear alarms, including dirty-filter warnings.</li><li>Recorded history that can be exported for reporting.</li><li>Access on site and securely from off site.</li></ul></div>
+    <div class="sec"><h4>My role</h4><ul class="dash"><li>Designed and built the dashboard and its Node.js gateway.</li><li>Worked with the controls integrator on point mapping and commissioning.</li><li>Set up the site host PC to run the system 24/7 and start automatically.</li><li>Configured connectivity and secure remote access.</li><li>Wrote the operator user guide and cabinet signage, and trained staff at handover.</li></ul>
+      <h4 style="margin-top:5mm">Technology &amp; equipment</h4><div class="chips"><span class="chip">Tridium Niagara 4</span><span class="chip">JACE controller</span><span class="chip">BACnet · Modbus TCP</span><span class="chip">Node.js</span><span class="chip">JavaScript</span><span class="chip">Windows host PC</span><span class="chip">TP-Link Omada</span><span class="chip">Tailscale</span></div></div>
+  </div>
+  <div class="foot mono"><span>Dashboard screenshots from a test environment with sample values.</span><span>06</span></div>
+</section>
+
+<!-- 7 MIDDELBURG B -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Case study 02 · Middelburg</span></div>
+  <div class="sec"><h4>Implementation</h4><p>A small gateway on the host PC holds the controller credentials, so browsers never see them. Only an approved list of points can be written to. Every command needs confirmation and is <strong>verified by reading the value back</strong> from the controller. A shared cache and command queue protect the JACE from multiple viewers, and every point is logged every five minutes for trends and CSV export. The dashboard has Units, Overview, 3D Model, Alarms, Trends and Audit Trail views, with Viewer, Operator and Admin roles.</p></div>
+  <div class="grid2" style="margin:6mm 0;gap:4mm">
+    <figure><div class="shot" style="height:52mm"><img src="img/middelburg/setpoint-dialog.jpg" alt=""></div><figcaption>Every command is confirmed, then verified against the controller.</figcaption></figure>
+    <figure><div class="shot" style="height:52mm"><img src="img/middelburg/trends.jpg" alt=""></div><figcaption>Trends: 24-hour history with period summary and MKT.</figcaption></figure>
+  </div>
+  <div class="sec"><h4>Challenges &amp; problem-solving</h4>
+    <div class="ch"><p><b>Challenge</b>The rooftop units would not switch between heating and cooling automatically. Leftover high-priority commands in the controller's priority array were overriding the changeover.</p><p><b>Approach</b>Traced the fault to the priority array, made heating/cooling read-only in the dashboard, and documented how the integrator should release the overrides.</p></div>
+    <div class="ch"><p><b>Challenge</b>During commissioning some points were not yet mapped, and others used different names on site, including the fire damper points.</p><p><b>Approach</b>Wrote diagnostic scripts that probe the controller for each expected point, then corrected the mapping on site with the integrator.</p></div>
+    <div class="ch"><p><b>Challenge</b>The site has no public IP address, but the client wanted to monitor it remotely.</p><p><b>Approach</b>Set up an encrypted private network (Tailscale) to the host PC, with a step-by-step access guide for client staff.</p></div>
+    <div class="ch"><p><b>Challenge</b>Values from a lost connection could be mistaken for live data.</p><p><b>Approach</b>Every reading shows its state (LIVE, STALE or OFFLINE), and controls lock while the connection is down.</p></div>
+  </div>
+  <div class="sec" style="margin-top:5mm"><h4>Outcome</h4><p class="outcome">The system was handed over to the Department of Health on 11 November 2026, with staff trained using a 10-page illustrated user guide. It runs continuously on site and records every reading for later export.</p></div>
+  <div class="foot mono"><span>Spartcon Technologies</span><span>07</span></div>
+</section>
+
+<!-- 8 MIDDELBURG GALLERY -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Case study 02 · Gallery</span></div>
+  <figure><div class="shot" style="height:92mm"><img src="img/middelburg/model.jpg" alt=""></div><figcaption>3D model: zones and units coloured by status. Select a zone or unit for details.</figcaption></figure>
+  <div class="grid2" style="margin-top:5mm;gap:4mm">
+    <figure><div class="shot" style="height:56mm"><img src="img/middelburg/overview.jpg" alt=""></div><figcaption>Overview: environmental assurance at a glance.</figcaption></figure>
+    <figure><div class="shot" style="height:56mm"><img src="img/middelburg/alarms.jpg" alt=""></div><figcaption>Alarm register for the whole site.</figcaption></figure>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-top:5mm">
+    <figure><div class="shot" style="height:50mm"><img src="img/middelburg/commissioning.jpg" alt="" style="object-position:center"></div><figcaption>Commissioning: connectivity testing during the network setup.</figcaption></figure>
+    <figure><div class="shot" style="height:50mm"><img src="img/middelburg/stored-logs.jpg" alt="" style="object-fit:contain;background:#fff"></div><figcaption>Stored logs: export recorded data for any date range.</figcaption></figure>
+  </div>
+  <div class="foot mono"><span>Dashboard screenshots from a test environment with sample values.</span><span>08</span></div>
+</section>
+
+<!-- 9 CAPTURE A -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Case study 03</span></div>
+  <div class="case-top"><p class="idx">03</p><div>
+    <p class="label">Business software · Internal application</p>
+    <h2>Spartcon Capture: document processing system</h2>
+    <p class="lead">An internal web application that turns supplier invoices and receipts, whether PDFs, scans or phone photos, into checked, structured records, with a full audit trail.</p>
+  </div></div>
+  <dl class="meta"><div><dt>Organisation</dt><dd>Spartcon Technologies</dd></div><div><dt>Type</dt><dd>Internal web application</dd></div><div><dt>My role</dt><dd>Design &amp; development</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>
+  <figure><div class="shot" style="height:96mm"><img src="img/capture/review.jpg" alt=""></div><figcaption>Review: the original document beside the extracted fields, with a duplicate warning.</figcaption></figure>
+  <div class="grid2" style="margin-top:6mm">
+    <div class="sec"><h4>Overview</h4><p>Capturing invoice details by hand is slow and error-prone. Spartcon Capture reads each uploaded document and fills in the key fields. A person still checks the result before anything is confirmed.</p></div>
+    <div class="sec"><h4>Objectives</h4><ul class="dash"><li>Cut manual typing of supplier, date, VAT number, invoice number and totals.</li><li>Keep a person in control of every confirmed record.</li><li>Catch duplicate invoices before they are processed twice.</li><li>Record who did what, and when, in a tamper-evident log.</li></ul></div>
+  </div>
+  <div class="foot mono"><span>Shown with fictional sample documents and a demo account.</span><span>09</span></div>
+</section>
+
+<!-- 10 CAPTURE B -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Case study 03 · Spartcon Capture</span></div>
+  <div class="grid2">
+    <div class="sec"><h4>Implementation</h4><ul class="dash"><li>Upload a PDF or photo. Text-based PDFs are read directly, while scans and photos go through OCR.</li><li>A review screen shows the original document beside the extracted fields. Each field is marked <strong>Found</strong> or <strong>Please check</strong>.</li><li>A duplicate warning appears for matching supplier, invoice number and date.</li><li>Confirmed documents produce an Excel file, and invoices move from <em>Ready to check</em> to <em>Done</em>.</li><li>User administration and an append-only activity log with a log integrity check.</li></ul>
+      <h4 style="margin-top:5mm">Technology</h4><div class="chips"><span class="chip">Web application</span><span class="chip">PDF text extraction</span><span class="chip">OCR</span><span class="chip">Excel export</span><span class="chip">Role-based access</span><span class="chip">Audit logging</span></div></div>
+    <div class="sec"><h4>Challenges &amp; problem-solving</h4><p><strong>Extraction is never perfect.</strong> Instead of trusting it blindly, the interface highlights exactly which fields need a human check, and why. For example, an address taken from the lines under the supplier name is flagged for review.</p><p><strong>Accountability matters for finance data.</strong> Every sign-in, upload, extraction and confirmation is written to an append-only log, which can be verified for integrity.</p>
+      <h4 style="margin-top:5mm">Outcome</h4><p class="outcome">A complete invoice workflow, from upload and extraction through review, duplicate detection and export, with an audit trail at every step.</p></div>
+  </div>
+  <figure style="margin-top:7mm"><div class="shot" style="height:80mm"><img src="img/capture/activity-log.jpg" alt=""></div><figcaption>Append-only activity log with filters and integrity verification.</figcaption></figure>
+  <figure style="margin-top:5mm"><div class="shot" style="height:52mm"><img src="img/capture/invoices.jpg" alt=""></div><figcaption>All invoices, newest first, with status filter.</figcaption></figure>
+  <div class="foot mono"><span>Shown with fictional sample documents and a demo account.</span><span>10</span></div>
+</section>
+
+<!-- 11 ADDITIONAL -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Additional work</span></div>
+  <p class="label">04 / More work</p>
+  <h2>Additional Software &amp; Web Projects</h2>
+  <div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:7mm;margin-top:2mm">
+    <div class="sec"><h4>Business application · Spartcon</h4><h3>Spartcon Timesheet</h3><p>A time and attendance app for site and office staff. Clocking in uses the server clock and a location check against the selected worksite.</p>
+      <ul class="dash" style="margin-top:3mm"><li>Clock in and out per site, within 100 m of the worksite.</li><li>Weekly totals, approvals and reports for team leads.</li><li>History by date range and status, with CSV export.</li><li>Employees, sites, location log and audit log.</li></ul></div>
+    <div><figure><div class="shot" style="height:40mm"><img src="img/timesheet/dashboard.jpg" alt=""></div></figure><figure style="margin-top:3mm"><div class="shot" style="height:40mm"><img src="img/timesheet/history.jpg" alt=""></div><figcaption>Dashboard and history views.</figcaption></figure></div>
+  </div>
+  <div class="sec" style="margin-top:7mm"><h4>Earlier web projects</h4>
+    <div class="web"><div class="shot"><img src="img/web/smartmailgen.jpg" alt=""></div><div><h4>SmartMailGen</h4><p>Generates context-aware email replies by connecting a simple interface to the OpenAI API. HTML · CSS · JavaScript.</p><a href="https://siphiwe-khumalo.github.io/Smart-Email-Generator/">siphiwe-khumalo.github.io/Smart-Email-Generator</a></div></div>
+    <div class="web"><div class="shot"><img src="img/web/cineverse.jpg" alt=""></div><div><h4>CineVerse</h4><p>Movie discovery with live data fetching, filtering and recommendations from the TMDB API.</p><a href="https://siphiwe-khumalo.github.io/CineVerse.html/">siphiwe-khumalo.github.io/CineVerse.html</a></div></div>
+    <div class="web"><div class="shot"><img src="img/web/ronnieai.jpg" alt=""></div><div><h4>RonnieAi FAQ Assistant</h4><p>A conversational FAQ assistant that answers repetitive support questions.</p><a href="https://siphiwe-khumalo.github.io/not-so-Smart-Ai-FAQs-Assistant/">siphiwe-khumalo.github.io/not-so-Smart-Ai-FAQs-Assistant</a></div></div>
+    <div class="web"><div class="shot"><img src="img/web/glowup.jpg" alt=""></div><div><h4>GlowUp Lamp landing page</h4><p>A product landing page with an interactive showcase and a deliberate conversion flow.</p><a href="https://siphiwe-khumalo.github.io/Glowup-Product-Landing-Page-/">siphiwe-khumalo.github.io/Glowup-Product-Landing-Page-</a></div></div>
+  </div>
+  <div class="foot mono"><span>More on GitHub: github.com/Siphiwe-Khumalo</span><span>11</span></div>
+</section>
+
+<!-- 12 SKILLS -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Skills</span></div>
+  <p class="label">05 / Skills</p>
+  <h2>Technical skills</h2>
+  <p style="margin-bottom:8mm">Grouped by discipline. Each item is something I have used on real work.</p>
+  <div class="grid2 skills" style="gap:9mm 10mm">
+    <div class="sk"><p class="label">01</p><h3>Building Automation</h3><ul><li>Tridium Niagara 4 and JACE controllers</li><li>BMS operator interfaces and graphics</li><li>HVAC monitoring and control</li><li>Points, priority arrays and overrides</li><li>Alarm and trend presentation</li></ul></div>
+    <div class="sk"><p class="label">02</p><h3>Networking &amp; Infrastructure</h3><ul><li>Router configuration (TP-Link Omada)</li><li>LAN setup and connectivity testing</li><li>Secure remote access (Tailscale)</li><li>Site host PC deployment</li><li>CCTV and VoIP fundamentals</li></ul></div>
+    <div class="sk"><p class="label">03</p><h3>IT Systems &amp; Cloud</h3><ul><li>Microsoft 365 administration and support</li><li>Windows setup and administration</li><li>Hardware installation and diagnostics</li><li>User support and documentation</li><li>Cybersecurity fundamentals</li></ul></div>
+    <div class="sk"><p class="label">04</p><h3>Software Development</h3><ul><li>JavaScript, HTML and CSS</li><li>Node.js and REST APIs</li><li>React and Firebase</li><li>Progressive Web Apps</li><li>Git and GitHub</li></ul></div>
+    <div class="sk"><p class="label">05</p><h3>Systems Integration</h3><ul><li>Web apps connected to building controllers</li><li>Read-back verified control commands</li><li>Data logging and CSV / Excel export</li><li>Document extraction and OCR workflows</li><li>Role-based access and audit trails</li></ul></div>
+    <div class="sk"><p class="label">06</p><h3>Troubleshooting &amp; Deployment</h3><ul><li>On-site commissioning support</li><li>Fault-finding across network and controller</li><li>Diagnostic scripting</li><li>User guides and site signage</li><li>Operator training and handover</li></ul></div>
+  </div>
+  <div class="foot mono"><span>Spartcon Technologies</span><span>12</span></div>
+</section>
+
+<!-- 13 CERTS + CONTACT -->
+<section class="page">
+  <div class="run mono"><span>Siphiwe Khumalo · Portfolio</span><span>Certifications · Contact</span></div>
+  <p class="label">06 / Certifications &amp; training</p>
+  <h2>Certifications &amp; training</h2>
+  <div class="cert">
+    <div class="m"><p class="label">Tridium · Niagara 4</p><h3 style="font-size:15pt;margin-top:2mm">Niagara 4 training course and examination</h3><p>A five-day course on the Tridium Niagara 4 framework, the platform behind the JACE controllers used on my BMS projects.</p>
+      <p class="score">83%</p>
+      <dl><dt>Training</dt><dd>26–30 October 2026 (five days)</dd><dt>Examination</dt><dd>Passed, 30 October 2026</dd><dt>Certificate</dt><dd>Pending issue</dd></dl></div>
+    <div class="slot"><div><p class="label">Certificate</p><p style="font-size:8pt;margin-top:2mm">The official certificate will be added once issued.</p></div></div>
+  </div>
+  <div class="sec" style="margin-top:6mm"><h4>Additional education</h4><p><strong>Tourism studies.</strong> They shaped how I think about technology from the user's side.</p></div>
+  <div class="contact">
+    <p class="label">07 / Contact</p>
+    <h2>Let's talk about your system.</h2>
+    <p>I'm open to conversations about building automation, IT infrastructure and software projects, and to roles where those disciplines meet.</p>
+    <ul>
+      <li><span>Email</span><span class="ph">Email address to be added</span></li>
+      <li><span>LinkedIn</span><span><a href="https://www.linkedin.com/in/siphiwe-khumalo-97a0aa306/">linkedin.com/in/siphiwe-khumalo-97a0aa306</a></span></li>
+      <li><span>GitHub</span><span><a href="https://github.com/Siphiwe-Khumalo">github.com/Siphiwe-Khumalo</a></span></li>
+      <li><span>Website</span><span><a href="https://siphiwe-khumalo.github.io/Portfolio-Website-/">siphiwe-khumalo.github.io/Portfolio-Website-</a></span></li>
+    </ul>
+    <p class="mono" style="margin-top:auto;padding-bottom:2mm;color:#8a877f">© 2026 Siphiwe Khumalo · 13</p>
+  </div>
+</section>
+</body>
+</html>
