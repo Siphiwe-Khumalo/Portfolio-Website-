@@ -23,7 +23,7 @@
 * { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 76px; -webkit-text-size-adjust: 100%; }
 body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-img, video { display: block; max-width: 100%; height: auto; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 ul { list-style: none; }
 ::selection { background: var(--accent); color: var(--accent-ink); }
@@ -158,9 +158,6 @@ p { max-width: 68ch; }
 .g-item.g-tall img { object-position: top center; }
 .g-item:hover img { transform: scale(1.025); }
 .g-item figcaption { position: absolute; inset: auto 0 0 0; padding: 1.6rem 0.8rem 0.6rem; background: linear-gradient(to top, rgba(14,14,15,0.92), rgba(14,14,15,0)); font-size: 0.78rem; color: var(--text); line-height: 1.35; }
-.g-video { grid-column: span 3; background: #000; border: 1px solid var(--line); }
-.g-video video { width: 100%; aspect-ratio: 16 / 9; }
-.g-video figcaption { padding: 0.6rem 0.8rem; font-size: 0.78rem; color: var(--muted); }
 .gallery-note { grid-column: 1 / -1; color: var(--faint); margin-top: 0.2rem; }
 
 /* ---------- Additional projects ---------- */
@@ -271,7 +268,7 @@ p { max-width: 68ch; }
   .case-meta div:nth-child(3) { padding-left: 0; border-left: 0; }
   .case-meta div:nth-child(n+3) { border-top: 1px solid var(--line); }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .g-item, .g-item.g-md, .g-video { grid-column: span 1; }
+  .g-item, .g-item.g-md { grid-column: span 1; }
   .g-item.g-wide { grid-column: 1 / -1; }
   .g-item.g-wide img { aspect-ratio: 16 / 10; }
   .g-item.g-lg { grid-column: 1 / -1; grid-row: auto; }
@@ -283,7 +280,7 @@ p { max-width: 68ch; }
   .hero-facts { grid-template-columns: 1fr; }
   .hero-facts li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 1rem; }
   .gallery, .web-grid, .skills { grid-template-columns: 1fr; }
-  .g-item, .g-item.g-md, .g-item.g-lg, .g-item.g-wide, .g-video { grid-column: 1 / -1; }
+  .g-item, .g-item.g-md, .g-item.g-lg, .g-item.g-wide { grid-column: 1 / -1; }
   .skill:nth-child(2n) { padding-left: 0; border-left: 0; }
   .hero-actions .btn { flex: 1 1 100%; justify-content: center; }
   .lb-bottom { flex-wrap: wrap; }
